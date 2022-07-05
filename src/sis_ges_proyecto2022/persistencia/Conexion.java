@@ -7,6 +7,7 @@ package sis_ges_proyecto2022.persistencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +38,10 @@ public class Conexion {
     public void desconectar(Connection con){
     
     
+    }
+
+    PreparedStatement prepareStatement(String sqlStm) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
