@@ -22,8 +22,8 @@ import sis_ges_proyecto2022.logica.Usuarios;
 public class UsuarioPersistencia {
 
     private static final String PS_SELECT_USUARIO = "SELECT  FROM usuarios where nombre=? and clave=?";
-    private static final String PS_UPDATE_USUARIO = "UPDATE grupo_centro.usuarios SET apellido = '?' WHERE (nombre = '?')";
-    private static final String PS_INSERT_USUARIO = "INSERT INTO grupo_centro.usuarios (nombre, apellido,clave) VALUES (?, ?, ?)";
+    private static final String PS_UPDATE_USUARIO = "UPDATE db_sis_ges_proyecto2022.usuarios SET apellido = '?' WHERE (nombre = '?')";
+    private static final String PS_INSERT_USUARIO = "INSERT INTO db_sis_ges_proyecto2022.usuarios (nombre, apellido,clave) VALUES (?, ?, ?)";
 
     public static void ingresarUsuario(Usuario usuario) throws UsuarioException {
 
