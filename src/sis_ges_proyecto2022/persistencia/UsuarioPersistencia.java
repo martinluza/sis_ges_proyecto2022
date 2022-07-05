@@ -22,8 +22,9 @@ import sis_ges_proyecto2022.logica.Usuarios;
 public class UsuarioPersistencia {
 
     private static final String PS_SELECT_USUARIO = "SELECT  FROM usuarios where nombre=? and clave=?";
-    private static final String PS_UPDATE_USUARIO = "UPDATE db_sis_ges_proyecto2022.usuarios SET apellido = '?' WHERE (nombre = '?')";
-    private static final String PS_INSERT_USUARIO = "INSERT INTO db_sis_ges_proyecto2022.usuarios (nombre, apellido,clave) VALUES (?, ?, ?)";
+    // private static final String PS_UPDATE_USUARIO = "UPDATE db_sis_ges_proyecto2022.usuarios SET apellido = '?' WHERE (nombre = '?')";
+    private static final String PS_INSERT_USUARIO = "INSERT INTO db_sis_ges_proyecto2022.usuarios (nombre, clave) VALUES (?, ?)";
+    private static final String PS_SELECT_LISTA_USUARIO = "SELECT * FROM usuarios";
 
     public static void ingresarUsuario(Usuario usuario) throws UsuarioException {
 
@@ -49,7 +50,7 @@ public class UsuarioPersistencia {
     }
 
     //los metodos para poder realizar un ABM de usuarios ( usuario )
-    public Usuarios listaUsuarios() {
+    public Usuarios listaUsuarios() throws UsuarioException {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement
@@ -57,6 +58,22 @@ public class UsuarioPersistencia {
         //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
         //paso 5 : cerrar la conexion a la base
         Usuarios usuarios = new Usuarios();
+        
+        PreparedStatement ps = null;
+        
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        ResultSet rs = null;
+        try {
+            con = conexion.conectar();
+            ps = con.prepareStatement(PS_SELECT_LISTA_USUARIO);
+            rs = ps.executeQuery();
+        
+        } catch (SQLException e){
+            throw new UsuarioException("Error");
+        } finally {
+        
+        }
        
         
         return usuarios;
