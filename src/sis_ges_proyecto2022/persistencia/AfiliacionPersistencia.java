@@ -12,5 +12,6 @@ package sis_ges_proyecto2022.persistencia;
 public class AfiliacionPersistencia {
     
     /*prueba aa */
+    /*prueba 2 */
     
 }
