@@ -22,5 +22,8 @@ public class Usuarios {
     public void setUsuarios(ArrayList<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
-
+    
+    public void agregarUsuario(Usuario usuario) {
+        this.usuarios.add(usuario); 
+    }
 }

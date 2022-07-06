@@ -28,30 +28,78 @@ public class VentanaMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        ag_af = new javax.swing.JButton();
+        busc_af = new javax.swing.JButton();
+        ag_usr = new javax.swing.JButton();
+        busc_usr = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Bienvenido");
+
+        ag_af.setText("Agregar afiliado");
+        ag_af.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ag_afActionPerformed(evt);
+            }
+        });
+
+        busc_af.setText("Buscar afiliado");
+
+        ag_usr.setText("Agregar usario");
+        ag_usr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ag_usrActionPerformed(evt);
+            }
+        });
+
+        busc_usr.setText("Buscar usario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
+                .addGap(154, 154, 154)
                 .addComponent(jLabel1)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ag_af)
+                    .addComponent(ag_usr))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(busc_af)
+                    .addComponent(busc_usr))
+                .addGap(67, 67, 67))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(busc_af)
+                    .addComponent(ag_af))
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ag_usr)
+                    .addComponent(busc_usr))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ag_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ag_afActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ag_afActionPerformed
+
+    private void ag_usrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ag_usrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ag_usrActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,6 +138,10 @@ public class VentanaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ag_af;
+    private javax.swing.JButton ag_usr;
+    private javax.swing.JButton busc_af;
+    private javax.swing.JButton busc_usr;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,19 +23,42 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="178" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="ag_af" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="ag_usr" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="busc_af" min="-2" max="-2" attributes="0"/>
+                  <Component id="busc_usr" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="179" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="busc_af" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ag_af" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ag_usr" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="busc_usr" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="95" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,6 +67,32 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bienvenido"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ag_af">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar afiliado"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ag_afActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="busc_af">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar afiliado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ag_usr">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar usario"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ag_usrActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="busc_usr">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar usario"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -42,6 +42,12 @@ public class VentanaUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Nombre");
 
         jLabel2.setText("Clave");
@@ -124,11 +130,15 @@ public class VentanaUsuario extends javax.swing.JFrame {
             ventana.setVisible(true);
         } else {
             //lo saco pa juera
-            System.out.println("No esistisssss");
+            System.out.println("Nombre y/o clave incorrecta");
         }
 
 
     }//GEN-LAST:event_ingresarActionPerformed
+
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreActionPerformed
 
     /**
      * @param args the command line arguments

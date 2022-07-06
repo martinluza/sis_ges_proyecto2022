@@ -69,14 +69,16 @@ public class UsuarioPersistencia {
             con = conexion.conectar();
             ps = con.prepareStatement(PS_SELECT_LISTA_USUARIO);
             rs = ps.executeQuery();
-            rs.getString("nombre");
+            while (rs.next()) {
+                Usuario user = new Usuario();
+                user.setNombre(rs.getString("nombre"));
+                user.setClave(rs.getString("clave"));    
+                usuarios.agregarUsuario(user);
+            }
         
         } catch (SQLException e){
             throw new UsuarioException("Error");
-        } finally {
-        
         }
-       
         
         return usuarios;
 
@@ -100,7 +102,7 @@ public class UsuarioPersistencia {
         ResultSet rs = null;
         try {
             Connection conexion = con.conectar();
-            String sqlStm = "select * from db_sis_ges_proyecto2022.usuarios where nombre='" + nombre + "' and clave='" + clave + "';";
+            String sqlStm = "select * from db_sis_ges_proyecto2022.usuarios where nombre='" + nombre + "' and clave='" + clave + "' and estado = 'activo';";
             ps = conexion.prepareStatement(sqlStm);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -113,14 +115,6 @@ public class UsuarioPersistencia {
 
         return resultado;
 
-    }
-
-    public void altaUsuario(Usuario usuario) {
-
-        //paso 1 : crear la conexion a la base
-        //paso 2 : crear el prepare statement
-        //paso 3 : ejecutar la consulta del preparestatement
-        //paso 5 : cerrar la conexion a la base    
     }
 
     public void bajaUsuario(Usuario usuario) throws UsuarioException {
@@ -147,14 +141,6 @@ public class UsuarioPersistencia {
             throw new UsuarioException("Error");
         }
         
-    }
-
-    public void modificacionUsuario(Usuario usuario) {
-
-        //paso 1 : crear la conexion a la base
-        //paso 2 : crear el prepare statement
-        //paso 3 : ejecutar la consulta del preparestatement
-        //paso 5 : cerrar la conexion a la base
     }
 
 }

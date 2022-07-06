@@ -38,8 +38,11 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        apellido = new javax.swing.JTextField();
+        clave = new javax.swing.JTextField();
         Ingresar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        clave2 = new javax.swing.JTextField();
+        volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,7 +50,7 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
 
         nombre.setText(" ");
 
-        jLabel2.setText("Apellido");
+        jLabel2.setText("Clave");
 
         Ingresar.setText("Ingresar");
         Ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -56,40 +59,57 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Repetir clave");
+
+        volver.setText("Volver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(apellido))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(157, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
+                .addComponent(volver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(Ingresar)
                 .addGap(67, 67, 67))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(clave2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clave)
+                            .addComponent(nombre))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
+                    .addComponent(clave2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                .addComponent(Ingresar)
+                    .addComponent(Ingresar)
+                    .addComponent(volver))
                 .addGap(51, 51, 51))
         );
 
@@ -100,21 +120,23 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
         try {
             //obtengo los valores de las cajas de texto
             String nombre = this.nombre.getText();
-            //String apellido = this.apellido.getText();
-
-            System.out.println("El nombre es " + nombre);
-           // System.out.println("El apellido es " + apellido);
-
-            //creo un objeto de tipo Usuario
-            Usuario usuario = new Usuario();
-            usuario.setNombre(nombre);
-            //usuario.setApellido(apellido);
-
-//       //invoco al existeUsuario con el usuario que cargue en memoria para saber si existe en la base
-            FachadaLogica.ingresarUsuario(usuario);
-
+            String clave = this.clave.getText();
+            String clave2 = this.clave2.getText();
             JLabel mensajeLbl = new JLabel();
-            JOptionPane.showMessageDialog(mensajeLbl, "El usuario se ingreso correctamente");
+            
+            if (clave.equals(clave2)) {
+                //creo un objeto de tipo Usuario
+                Usuario usuario = new Usuario();
+                usuario.setNombre(nombre);
+                usuario.setClave(clave);
+                
+                //invoco al existeUsuario con el usuario que cargue en memoria para saber si existe en la base
+                 FachadaLogica.ingresarUsuario(usuario);
+                JOptionPane.showMessageDialog(mensajeLbl, "El usuario se ingreso correctamente");
+            } else {
+                JOptionPane.showMessageDialog(mensajeLbl, "Claves no coinciden, reintentar");
+            }
+
             //navego 
         } catch (UsuarioException ex) {
             JLabel mensajeLbl = new JLabel();
@@ -162,9 +184,12 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Ingresar;
-    private javax.swing.JTextField apellido;
+    private javax.swing.JTextField clave;
+    private javax.swing.JTextField clave2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField nombre;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
