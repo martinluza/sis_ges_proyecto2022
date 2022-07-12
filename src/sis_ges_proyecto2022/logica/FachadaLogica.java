@@ -14,7 +14,7 @@ import sis_ges_proyecto2022.persistencia.UsuarioPersistencia;
  */
 public class FachadaLogica {
 
-    public static Boolean existeUsuario(Usuario usuario) {
+    public static Boolean existeUsuario(Usuario usuario) throws UsuarioException {
 
         Boolean existe = false;
         existe = UsuarioPersistencia.existeUsuario(usuario);

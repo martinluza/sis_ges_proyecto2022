@@ -84,7 +84,7 @@ public class UsuarioPersistencia {
 
     }
 
-    public static Boolean existeUsuario(Usuario usuario) {
+    public static Boolean existeUsuario(Usuario usuario) throws UsuarioException {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement
@@ -102,15 +102,18 @@ public class UsuarioPersistencia {
         ResultSet rs = null;
         try {
             Connection conexion = con.conectar();
-            String sqlStm = "select * from db_sis_ges_proyecto2022.usuarios where nombre='" + nombre + "' and clave='" + clave + "' and estado = 'activo';";
+            String sqlStm = "select * from sis_ges_proyecto2022.usuarios where nombre='" + nombre + "' and clave='" + clave + "' and estado = 'activo';";
             ps = conexion.prepareStatement(sqlStm);
             rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs !=null&& rs.next()) {
                 resultado = true;
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
 
+        } catch (Exception ex){
+        ex.printStackTrace();
         }
 
         return resultado;
