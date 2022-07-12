@@ -21,10 +21,10 @@ import sis_ges_proyecto2022.logica.Usuarios;
  */
 public class UsuarioPersistencia {
 
-    private static final String PS_SELECT_USUARIO = "SELECT  FROM usuarios where nombre=? and clave=?";
+    private static final String PS_SELECT_USUARIO = "SELECT * FROM usuarios where nombre=? and clave=?";
     // private static final String PS_UPDATE_USUARIO = "UPDATE db_sis_ges_proyecto2022.usuarios SET apellido = '?' WHERE (nombre = '?')";
-    private static final String PS_INSERT_USUARIO = "INSERT INTO db_sis_ges_proyecto2022.usuarios (nombre, clave, estado) VALUES (?, ?, ?)";
-    private static final String PS_SELECT_LISTA_USUARIO = "SELECT  FROM usuarios where usuario=activo";
+    private static final String PS_INSERT_USUARIO = "INSERT INTO sis_ges_proyecto2022.usuarios (nombre, clave, estado) VALUES (?, ?, ?)";
+    private static final String PS_SELECT_LISTA_USUARIO = "SELECT * FROM usuarios where estado='activo'";
 
     public static void ingresarUsuario(Usuario usuario) throws UsuarioException {
 
@@ -136,7 +136,7 @@ public class UsuarioPersistencia {
         Connection con = null;
         try {
             con = conexion.conectar();
-            String sqlStm = "UPDATE db_sis_ges_proyecto2022.usuarios SET estado = 'inactivo' WHERE (nombre = '"+nombre+"' and clave = '"+clave+"')";
+            String sqlStm = "UPDATE sis_ges_proyecto2022.usuarios SET estado = 'inactivo' WHERE (nombre = '"+nombre+"' and clave = '"+clave+"')";
             ps = conexion.prepareStatement(sqlStm);
             ps.executeUpdate();
             
