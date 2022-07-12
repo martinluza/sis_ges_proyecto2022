@@ -84,7 +84,7 @@ public class UsuarioPersistencia {
 
     }
 
-    public static Boolean existeUsuario(Usuario usuario) throws UsuarioException {
+    public static Boolean existeUsuario(Usuario usuario) {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement

@@ -125,7 +125,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
             //le doy la bienvenida
             System.out.println("EL usuario existe");
             JLabel mensajeLbl = new JLabel();
-            JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a" + usuario.getNombre());
+            JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a " + usuario.getNombre());
             VentanaMenu ventana = new VentanaMenu();
             ventana.setVisible(true);
         } else {
