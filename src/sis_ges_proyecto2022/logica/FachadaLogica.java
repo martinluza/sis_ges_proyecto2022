@@ -25,5 +25,10 @@ public class FachadaLogica {
 
         UsuarioPersistencia.ingresarUsuario(usuario);
     }
+    
+    public static void bajaUsuario(Usuario usuario) throws UsuarioException{
+
+        UsuarioPersistencia.bajaUsuario(usuario);
+    }
 
 }

@@ -99,6 +99,8 @@ public class VentanaMenu extends javax.swing.JFrame {
 
     private void ag_usrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ag_usrActionPerformed
         // TODO add your handling code here:
+        VentanaIngresarUsuario ventana = new VentanaIngresarUsuario();
+        ventana.setVisible(true);
     }//GEN-LAST:event_ag_usrActionPerformed
 
     /**

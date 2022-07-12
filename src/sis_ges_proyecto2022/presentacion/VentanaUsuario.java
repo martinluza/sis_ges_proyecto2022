@@ -5,8 +5,11 @@
  */
 package sis_ges_proyecto2022.presentacion;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import sis_ges_proyecto2022.excepciones.UsuarioException;
 import sis_ges_proyecto2022.logica.FachadaLogica;
 import sis_ges_proyecto2022.logica.Usuario;
 import sis_ges_proyecto2022.persistencia.UsuarioPersistencia;
@@ -105,32 +108,36 @@ public class VentanaUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
-        //aca sucede la magia
+        try {
+            //aca sucede la magia
 
-        //obtengo los valores de las cajas de texto 
-        String nombre = this.nombre.getText();
-        String clave = this.clave.getText();
+            //obtengo los valores de las cajas de texto
+            String nombre = this.nombre.getText();
+            String clave = this.clave.getText();
 
-        System.out.println("El nombre es " + nombre);
-        System.out.println("La clave es " + clave);
+            System.out.println("El nombre es " + nombre);
+            System.out.println("La clave es " + clave);
 
-        //creo un objeto de tipo Usuario 
-        Usuario usuario = new Usuario();
-        usuario.setNombre(nombre);
-        usuario.setClave(clave);
+            //creo un objeto de tipo Usuario
+            Usuario usuario = new Usuario();
+            usuario.setNombre(nombre);
+            usuario.setClave(clave);
 
-//       //invoco al existeUsuario con el usuario que cargue en memoria para saber si existe en la base 
-        Boolean existe = FachadaLogica.existeUsuario(usuario);
-        if (existe) {
-            //le doy la bienvenida
-            System.out.println("EL usuario existe");
-            JLabel mensajeLbl = new JLabel();
-            JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a " + usuario.getNombre());
-            VentanaMenu ventana = new VentanaMenu();
-            ventana.setVisible(true);
-        } else {
-            //lo saco pa juera
-            System.out.println("Nombre y/o clave incorrecta");
+//       //invoco al existeUsuario con el usuario que cargue en memoria para saber si existe en la base
+            Boolean existe = FachadaLogica.existeUsuario(usuario);
+            if (existe) {
+                //le doy la bienvenida
+                System.out.println("EL usuario existe");
+                JLabel mensajeLbl = new JLabel();
+                JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a " + usuario.getNombre());
+                VentanaMenu ventana = new VentanaMenu();
+                ventana.setVisible(true);
+            } else {
+                //lo saco pa juera
+                System.out.println("Nombre y/o clave incorrecta");
+            }
+        } catch (UsuarioException ex) {
+            Logger.getLogger(VentanaUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 

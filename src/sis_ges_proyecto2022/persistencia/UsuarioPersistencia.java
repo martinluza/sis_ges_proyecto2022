@@ -120,7 +120,7 @@ public class UsuarioPersistencia {
 
     }
 
-    public void bajaUsuario(Usuario usuario) throws UsuarioException {
+    public static void bajaUsuario(Usuario usuario) throws UsuarioException {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement
@@ -136,8 +136,8 @@ public class UsuarioPersistencia {
         Connection con = null;
         try {
             con = conexion.conectar();
-            String sqlStm = "UPDATE sis_ges_proyecto2022.usuarios SET estado = 'inactivo' WHERE (nombre = '"+nombre+"' and clave = '"+clave+"')";
-            ps = conexion.prepareStatement(sqlStm);
+            String sqlStm = "UPDATE sis_ges_proyecto2022.usuarios SET estado = 'inactivo'  WHERE (nombre = '"+nombre+"' and clave = '"+clave+"')";
+            ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             
         } catch (SQLException e) {

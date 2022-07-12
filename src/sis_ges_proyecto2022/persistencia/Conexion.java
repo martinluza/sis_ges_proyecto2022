@@ -35,13 +35,8 @@ public class Conexion {
         return con;
     
     }
-    public void desconectar(Connection con){
+    public void desconectar(Connection con){ 
     
-    
-    }
-
-    PreparedStatement prepareStatement(String sqlStm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
