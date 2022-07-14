@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sis_ges_proyecto2022.excepciones.UsuarioException;
+import sis_ges_proyecto2022.logica.DobleBooleano;
 import sis_ges_proyecto2022.logica.Usuario;
 import sis_ges_proyecto2022.logica.Usuarios;
 
@@ -118,6 +119,46 @@ public class UsuarioPersistencia {
 
         return resultado;
 
+    }
+    
+    public static DobleBooleano existeUsuario1(Usuario usuario){
+        DobleBooleano dobleB = new DobleBooleano();
+        dobleB.setPrimerBit(false);
+        dobleB.setSegundoBit(false);
+        
+        Conexion con = new Conexion();
+        String nombre = usuario.getNombre();
+        String clave = usuario.getClave();
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.usuarios where nombre='" + nombre + "';";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();
+            if (rs !=null&& rs.next()) {
+                if (rs.getString("estado").equals("activo")){
+                    if (rs.getString("clave").equals(clave)){
+                        dobleB.setPrimerBit(true);
+                        dobleB.setSegundoBit(true);
+                    } else {
+                        dobleB.setSegundoBit(true);
+                    }
+                } else {
+                    dobleB.setPrimerBit(true);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return dobleB;
     }
 
     public static void bajaUsuario(Usuario usuario) throws UsuarioException {

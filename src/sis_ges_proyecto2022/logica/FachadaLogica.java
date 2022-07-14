@@ -20,6 +20,15 @@ public class FachadaLogica {
         existe = UsuarioPersistencia.existeUsuario(usuario);
         return existe;
     }
+    
+    public static DobleBooleano existeUsuario1(Usuario usuario) throws UsuarioException{
+        
+        DobleBooleano dobleB = new DobleBooleano();
+        dobleB.setPrimerBit(false);
+        dobleB.setSegundoBit(false);
+        dobleB = UsuarioPersistencia.existeUsuario1(usuario);
+        return dobleB;
+    }
 
     public static void ingresarUsuario(Usuario usuario) throws UsuarioException{
 

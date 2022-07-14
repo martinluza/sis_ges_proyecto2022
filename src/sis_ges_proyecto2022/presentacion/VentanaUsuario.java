@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import sis_ges_proyecto2022.excepciones.UsuarioException;
+import sis_ges_proyecto2022.logica.DobleBooleano;
 import sis_ges_proyecto2022.logica.FachadaLogica;
 import sis_ges_proyecto2022.logica.Usuario;
-import sis_ges_proyecto2022.persistencia.UsuarioPersistencia;
 
 /**
  *
@@ -115,8 +115,8 @@ public class VentanaUsuario extends javax.swing.JFrame {
             String nombre = this.nombre.getText();
             String clave = this.clave.getText();
 
-            System.out.println("El nombre es " + nombre);
-            System.out.println("La clave es " + clave);
+            //System.out.println("El nombre es " + nombre);
+            //System.out.println("La clave es " + clave);
 
             //creo un objeto de tipo Usuario
             Usuario usuario = new Usuario();
@@ -124,17 +124,38 @@ public class VentanaUsuario extends javax.swing.JFrame {
             usuario.setClave(clave);
 
 //       //invoco al existeUsuario con el usuario que cargue en memoria para saber si existe en la base
-            Boolean existe = FachadaLogica.existeUsuario(usuario);
-            if (existe) {
+            //Boolean existe = FachadaLogica.existeUsuario(usuario);
+            //if (existe) {
                 //le doy la bienvenida
-                System.out.println("EL usuario existe");
-                JLabel mensajeLbl = new JLabel();
-                JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a " + usuario.getNombre());
-                VentanaMenu ventana = new VentanaMenu();
-                ventana.setVisible(true);
-            } else {
+                //System.out.println("EL usuario existe");
+                //JLabel mensajeLbl = new JLabel();
+                //JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a " + usuario.getNombre());
+                //VentanaMenu ventana = new VentanaMenu();
+                //ventana.setVisible(true);
+            //} else {
                 //lo saco pa juera
-                System.out.println("Nombre y/o clave incorrecta");
+                //System.out.println("Nombre y/o clave incorrecta");
+            //}
+            DobleBooleano dobleB = new DobleBooleano();
+            dobleB = FachadaLogica.existeUsuario1(usuario);
+            if (dobleB.getPrimerBit() == true){
+                if (dobleB.getSegundoBit() == true){
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a " + usuario.getNombre());
+                    VentanaMenu ventana = new VentanaMenu();
+                    ventana.setVisible(true);
+                } else {
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Usuario " + usuario.getNombre() + " esta inactivo");
+                }
+            } else {
+                if (dobleB.getSegundoBit() == true){
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Clave incorrecta");
+                } else {
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Usuario inexistente");
+                }
             }
         } catch (UsuarioException ex) {
             Logger.getLogger(VentanaUsuario.class.getName()).log(Level.SEVERE, null, ex);
