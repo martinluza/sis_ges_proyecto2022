@@ -136,7 +136,12 @@ public class VentanaUsuario extends javax.swing.JFrame {
                 //lo saco pa juera
                 //System.out.println("Nombre y/o clave incorrecta");
             //}
+            
+            //creo un doblebolleano
             DobleBooleano dobleB = new DobleBooleano();
+            
+            //invoco al existeUsuario1 con el usuario que cargue en memoria para saber si existe en la base
+            // (1,1) existe;    (1,0) usuario inactivo;     (0,1) clave incorrecta;     (0,0) usuario no existe
             dobleB = FachadaLogica.existeUsuario1(usuario);
             if (dobleB.getPrimerBit() == true){
                 if (dobleB.getSegundoBit() == true){
