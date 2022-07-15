@@ -143,8 +143,8 @@ public class VentanaUsuario extends javax.swing.JFrame {
             //invoco al existeUsuario1 con el usuario que cargue en memoria para saber si existe en la base
             // (1,1) existe;    (1,0) usuario inactivo;     (0,1) clave incorrecta;     (0,0) usuario no existe
             dobleB = FachadaLogica.existeUsuario1(usuario);
-            if (dobleB.getPrimerBit() == true){
-                if (dobleB.getSegundoBit() == true){
+            if (dobleB.getPrimerBit()){
+                if (dobleB.getSegundoBit()){
                     JLabel mensajeLbl = new JLabel();
                     JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a " + usuario.getNombre());
                     VentanaMenu ventana = new VentanaMenu();
@@ -154,7 +154,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(mensajeLbl, "Usuario " + usuario.getNombre() + " esta inactivo");
                 }
             } else {
-                if (dobleB.getSegundoBit() == true){
+                if (dobleB.getSegundoBit()){
                     JLabel mensajeLbl = new JLabel();
                     JOptionPane.showMessageDialog(mensajeLbl, "Clave incorrecta");
                 } else {
