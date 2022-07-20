@@ -9,8 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sis_ges_proyecto2022.excepciones.UsuarioException;
 import sis_ges_proyecto2022.logica.DobleBooleano;
 import sis_ges_proyecto2022.logica.Usuario;
@@ -134,6 +132,8 @@ public class UsuarioPersistencia {
 
         ResultSet rs = null;
         try {
+            // veo si existe en la base
+            // (1,1) existe;    (1,0) usuario inactivo;     (0,1) clave incorrecta;     (0,0) usuario no existe
             Connection conexion = con.conectar();
             String sqlStm = "select * from sis_ges_proyecto2022.usuarios where nombre='" + nombre + "';";
             ps = conexion.prepareStatement(sqlStm);

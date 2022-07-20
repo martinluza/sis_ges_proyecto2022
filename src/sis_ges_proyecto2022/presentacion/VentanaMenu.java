@@ -45,6 +45,11 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
 
         busc_af.setText("Buscar afiliado");
+        busc_af.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busc_afActionPerformed(evt);
+            }
+        });
 
         ag_usr.setText("Agregar usario");
         ag_usr.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +107,12 @@ public class VentanaMenu extends javax.swing.JFrame {
         VentanaIngresarUsuario ventana = new VentanaIngresarUsuario();
         ventana.setVisible(true);
     }//GEN-LAST:event_ag_usrActionPerformed
+
+    private void busc_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busc_afActionPerformed
+        // TODO add your handling code here:
+        VentanaBuscarUsuario ventana = new VentanaBuscarUsuario();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_busc_afActionPerformed
 
     /**
      * @param args the command line arguments
