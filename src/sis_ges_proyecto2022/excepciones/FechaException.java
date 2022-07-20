@@ -9,6 +9,13 @@ package sis_ges_proyecto2022.excepciones;
  *
  * @author mauri
  */
-public class FechaException {
+public class FechaException extends Exception {
+
+    public FechaException() {
+    }
+    
+     public FechaException(String msg) {
+        super(msg);
+    }
     
 }

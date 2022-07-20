@@ -5,7 +5,7 @@
  */
 package sis_ges_proyecto2022.logica;
 
-import java.time.LocalDate;
+
 
 /**
  *
@@ -20,7 +20,7 @@ public class Afiliado {
     private String direccion;
     private int telefono;
     private String mail;
-    private LocalDate nacimiento;
+    private String nacimiento;
     
     public String getDocumento(){
         return documento;
@@ -78,11 +78,11 @@ public class Afiliado {
         this.mail = mail;
     }
 
-    public LocalDate getNacimiento() {
+    public String getNacimiento() {
         return nacimiento;
     }
 
-    public void setNacimiento(LocalDate nacimiento) {
+    public void setNacimiento(String nacimiento) {
         this.nacimiento = nacimiento;
     }
     

@@ -5,10 +5,25 @@
  */
 package sis_ges_proyecto2022.logica;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mauri
  */
 public class Afiliados {
     
+    ArrayList<Afiliado> afiliados = new ArrayList();
+
+    public ArrayList<Afiliado> getAfiliados() {
+        return afiliados;
+    }
+
+    public void setAfiliados(ArrayList<Afiliado> afiliados) {
+        this.afiliados = afiliados;
+    }
+    
+    public void agregarUsuario(Afiliado afiliado) {
+        this.afiliados.add(afiliado); 
+    }
 }
