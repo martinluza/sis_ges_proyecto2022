@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import sis_ges_proyecto2022.excepciones.UsuarioException;
+import sis_ges_proyecto2022.logica.DobleBooleano;
 import sis_ges_proyecto2022.logica.Usuario;
 import sis_ges_proyecto2022.persistencia.UsuarioPersistencia;
 import sis_ges_proyecto2022.logica.FachadaLogica;
@@ -128,7 +129,26 @@ public class VentanaBuscarUsuario extends javax.swing.JFrame {
         usuario.setClave(clave);
         
         try {
-            FachadaLogica.bajaUsuario(usuario);
+            DobleBooleano dobleB = new DobleBooleano();
+            dobleB = FachadaLogica.existeUsuario1(usuario);
+            if (dobleB.getPrimerBit()){
+                if (dobleB.getSegundoBit()){
+                    FachadaLogica.bajaUsuario(usuario);
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Usuario " + nombre + " dado de baja con exito");
+                } else {
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Usuario " + nombre + " previamente inactivo");
+                }
+            } else {
+                if (dobleB.getSegundoBit()){
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Clave incorrecta");
+                } else {
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Usuario inexistente");
+                }
+            }
         } catch (UsuarioException ex) {
             Logger.getLogger(VentanaBuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
