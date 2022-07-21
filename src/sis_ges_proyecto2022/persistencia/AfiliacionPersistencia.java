@@ -9,8 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sis_ges_proyecto2022.logica.Afiliado;
 import sis_ges_proyecto2022.excepciones.AfiliacionException;
+import sis_ges_proyecto2022.excepciones.FechaException;
+import sis_ges_proyecto2022.logica.Afiliados;
 import sis_ges_proyecto2022.logica.Fecha;
 /**
  *
@@ -25,7 +29,7 @@ public class AfiliacionPersistencia {
     
     
     
-     public static void ingresarUsuario(Afiliado afiliado) throws AfiliacionException {
+     public static void ingresarAfiliado(Afiliado afiliado) throws AfiliacionException {
 
         PreparedStatement ps = null;
 
@@ -41,17 +45,202 @@ public class AfiliacionPersistencia {
             ps.setString(5, afiliado.getDireccion());
             ps.setInt(6, afiliado.getTelefono());
             ps.setString(7, afiliado.getMail());
-            ps.setDate(8, fecha.convertirStringAFecha(afiliado.getNacimiento()));
+            ps.setDate(8, Fecha.convertirStringAFecha(afiliado.getNacimiento()));
             ps.setString(9, "activo");
 
             ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new AfiliacionException("No pude insertar el usuario");
+        } catch (FechaException ex) {
+            Logger.getLogger(AfiliacionPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            throw new AfiliacionException("No pude insertar la fecha");
         } finally {
 
         }
 
     }
+     
+     public Afiliados listaAfiliados() throws AfiliacionException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+        Afiliados afiliados = new Afiliados();
+        
+        PreparedStatement ps = null;
+        
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        ResultSet rs = null;
+        try {
+            con = conexion.conectar();
+            ps = con.prepareStatement(PS_SELECT_LISTA_AFILIADOS);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Afiliado afiliado = new Afiliado();
+                afiliado.setDocumento(rs.getString("documento"));
+                afiliado.setNombre(rs.getString("nombre"));
+                afiliado.setApellido(rs.getString("apellido"));
+                afiliado.setNacionalidad(rs.getString("nacionalidad"));
+                afiliado.setDireccion(rs.getString("direccion"));
+                afiliado.setTelefono(rs.getInt("telefono"));
+                afiliado.setMail(rs.getString("mail"));
+                afiliado.setNacimiento(rs.getDate("nacimiento").toString());
+                afiliados.agregarUsuario(afiliado);
+            }
+        
+        } catch (SQLException e){
+            throw new AfiliacionException("Error");
+        }
+        
+        return afiliados;
+
+    }
     
+     public static Boolean existeAfiliado(Afiliado afiliado) {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+        Boolean resultado = false;
+
+        Conexion con = new Conexion();
+        String documento = afiliado.getDocumento();
+        
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliados where nombre='" + documento + "' and estado = 'activo';";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();
+            if (rs !=null&& rs.next()) {
+                resultado = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return resultado;
+
+    }
+     
+     public static void bajaAfiliado(Afiliado afiliado) throws AfiliacionException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 5 : cerrar la conexion a la 
+       
+        PreparedStatement ps = null;
+        
+        String documento = afiliado.getDocumento();
+        
+
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        try {
+            con = conexion.conectar();
+            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET estado = 'inactivo'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            throw new AfiliacionException("Error");
+        }
+        
+    }
+     
+     public static void altaAfiliado(Afiliado afiliado) throws AfiliacionException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 5 : cerrar la conexion a la 
+       
+        PreparedStatement ps = null;
+        
+        String documento = afiliado.getDocumento();
+        
+
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        try {
+            con = conexion.conectar();
+            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET estado = 'activo'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            throw new AfiliacionException("Error");
+        }
+        
+    }
+    
+     public static void modificarAfiliado(Afiliado afiliado) throws AfiliacionException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 5 : cerrar la conexion a la 
+       
+        PreparedStatement ps = null;
+        
+        String documento = afiliado.getDocumento();
+        String nombre = afiliado.getNombre();
+        String apellido = afiliado.getApellido();
+        String nacionalidad = afiliado.getNacionalidad();
+        String direccion = afiliado.getDireccion();
+        int telefono = afiliado.getTelefono();
+        String mail = afiliado.getMail();
+        String nacimiento = afiliado.getNacimiento();
+        
+
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        try {
+            con = conexion.conectar();
+            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET nombre = '"+nombre+"'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET apellido = '"+apellido+"'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET nacionalidad = '"+nacionalidad+"'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET direccion = '"+direccion+"'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET telefono = '"+telefono+"'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET mail = '"+mail+"'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET nacimiento = '"+Fecha.convertirStringAFecha(nacimiento)+"'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            
+            
+        } catch (SQLException e) {
+            throw new AfiliacionException("Error");
+        } catch (FechaException ex) {
+            Logger.getLogger(AfiliacionPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            throw new AfiliacionException("Error2");
+        }
+        
+    }
+     
 }

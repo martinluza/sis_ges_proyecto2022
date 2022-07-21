@@ -8,7 +8,6 @@ package sis_ges_proyecto2022.logica;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import sis_ges_proyecto2022.excepciones.FechaException;
 
 /**
@@ -17,20 +16,22 @@ import sis_ges_proyecto2022.excepciones.FechaException;
  */
 public class Fecha {
     
-    public Date convertirStringAFecha(String fechaString)throws FechaException {
-        Date fechaDate = new Date();
+    public static java.sql.Date convertirStringAFecha(String fechaString)throws FechaException {
+        java.util.Date fechaDate = new java.util.Date();
+        
         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        java.sql.Date fechaSql = null;
        
         try {
             fechaDate = formateador.parse(fechaString);
-            fechaDate.hashCode();
+            fechaSql = new java.sql.Date(fechaDate.getTime());
            
         } catch (ParseException e) {
        
             throw new FechaException();
         }
        
-        return fechaDate;
+        return fechaSql;
 
     }
 }
