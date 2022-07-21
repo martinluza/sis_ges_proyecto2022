@@ -66,6 +66,11 @@ public class VentanaBuscarUsuario extends javax.swing.JFrame {
         jLabel3.setText("Clave");
 
         jButton2.setText("Reactivar usuario");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,6 +159,41 @@ public class VentanaBuscarUsuario extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String nombre = this.nombre.getText();
+        String clave = this.clave.getText();
+        
+        Usuario usuario = new Usuario();
+        usuario.setNombre(nombre);
+        usuario.setClave(clave);
+        
+         try {
+            DobleBooleano dobleB = new DobleBooleano();
+            dobleB = FachadaLogica.existeUsuario2(usuario);
+            if (dobleB.getPrimerBit()){
+                if (dobleB.getSegundoBit()){
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Usuario " + nombre + " previamente activo");
+                } else {
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Clave incorrecta");
+                }
+            } else {
+                if (dobleB.getSegundoBit()){
+                    FachadaLogica.altaUsuario(usuario);
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Usuario " + nombre + " reactivado con exito");
+                } else {
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Usuario inexistente");
+                }
+            }
+        } catch (UsuarioException ex) {
+            Logger.getLogger(VentanaBuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
