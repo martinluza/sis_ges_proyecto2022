@@ -15,7 +15,16 @@ public class Local {
     private String numero_de_local;
     private String negocio;
     private String encargado;
+    private String afiliado;
 
+    public String getAfiliado() {
+        return afiliado;
+    }
+
+    public void setAfiliado(String afiliado) {
+        this.afiliado = afiliado;
+    }
+    
     public String getId() {
         return id;
     }

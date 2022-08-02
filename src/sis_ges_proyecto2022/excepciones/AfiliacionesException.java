@@ -9,6 +9,23 @@ package sis_ges_proyecto2022.excepciones;
  *
  * @author mauri
  */
-public class AfiliacionesException {
+public class AfiliacionesException extends Exception {
+
+    /**
+     * Creates a new instance of <code>AfiliacionException</code> without detail
+     * message.
+     */
+    public AfiliacionesException() {
+    }
+
+    /**
+     * Constructs an instance of <code>AfiliacionException</code> with the
+     * specified detail message.
+     *
+     * @param msg the detail message.
+     */
+    public AfiliacionesException(String msg) {
+        super(msg);
+    }
     
 }
