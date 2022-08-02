@@ -24,7 +24,7 @@ public class AfiliacionPersistencia {
     
     private static final String PS_SELECT_AFILIADO = "SELECT * FROM afiliados where documento = ?";
     private static final String PS_UPDATE_AFILIADO = "UPDATE sis_ges_proyecto2022.afiliados SET estado = '?' WHERE (documento = '?')";
-    private static final String PS_INSERT_AFILIADO = "INSERT INTO sis_ges_proyecto2022.afiliados (documento, nombre, apellido, nacionalidad, direccion, telefono, mail, nacimiento, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String PS_INSERT_AFILIADO = "INSERT INTO sis_ges_proyecto2022.afiliados (documento, nombre, apellido, nacionalidad, direccion, telefono, mail, nacimiento, rubro, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String PS_SELECT_LISTA_AFILIADOS = "SELECT * FROM afiliados where estado='activo'";
     
     
@@ -46,12 +46,13 @@ public class AfiliacionPersistencia {
             ps.setInt(6, afiliado.getTelefono());
             ps.setString(7, afiliado.getMail());
             ps.setDate(8, Fecha.convertirStringAFecha(afiliado.getNacimiento()));
-            ps.setString(9, "activo");
+            ps.setString(9, afiliado.getRubro());
+            ps.setString(10, "activo");
 
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new AfiliacionException("No pude insertar el usuario");
+            throw new AfiliacionException("No pude insertar el afiliado");
         } catch (FechaException ex) {
             Logger.getLogger(AfiliacionPersistencia.class.getName()).log(Level.SEVERE, null, ex);
             throw new AfiliacionException("No pude insertar la fecha");
@@ -89,6 +90,7 @@ public class AfiliacionPersistencia {
                 afiliado.setTelefono(rs.getInt("telefono"));
                 afiliado.setMail(rs.getString("mail"));
                 afiliado.setNacimiento(rs.getDate("nacimiento").toString());
+                afiliado.setRubro(rs.getString("rubro"));
                 afiliados.agregarUsuario(afiliado);
             }
         
@@ -205,6 +207,7 @@ public class AfiliacionPersistencia {
         int telefono = afiliado.getTelefono();
         String mail = afiliado.getMail();
         String nacimiento = afiliado.getNacimiento();
+        String rubro = afiliado.getRubro();
         
 
         Conexion conexion = new Conexion();
@@ -230,6 +233,9 @@ public class AfiliacionPersistencia {
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET nacimiento = '"+Fecha.convertirStringAFecha(nacimiento)+"'  WHERE (documento = '"+documento+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET rubro = '"+rubro+"'  WHERE (documento = '"+documento+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             
