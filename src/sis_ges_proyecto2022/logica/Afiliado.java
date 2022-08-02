@@ -21,6 +21,25 @@ public class Afiliado {
     private int telefono;
     private String mail;
     private String nacimiento;
+    private String rubro;
+    private Locales negocio;
+    
+
+    public Locales getNegocio() {
+        return negocio;
+    }
+
+    public void setNegocio(Locales negocio) {
+        this.negocio = negocio;
+    }
+
+    public String getRubro() {
+        return rubro;
+    }
+
+    public void setRubro(String rubro) {
+        this.rubro = rubro;
+    }
     
     public String getDocumento(){
         return documento;

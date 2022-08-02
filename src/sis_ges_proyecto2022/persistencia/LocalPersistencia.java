@@ -7,9 +7,12 @@ package sis_ges_proyecto2022.persistencia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import sis_ges_proyecto2022.excepciones.LocalException;
+import sis_ges_proyecto2022.logica.Afiliado;
 import sis_ges_proyecto2022.logica.Local;
+import sis_ges_proyecto2022.logica.Locales;
 
 /**
  *
@@ -17,9 +20,9 @@ import sis_ges_proyecto2022.logica.Local;
  */
 public class LocalPersistencia {
     private static final String PS_SELECT_LOCAL = "SELECT * FROM locales where ID = ?";
-    private static final String PS_UPDATE_LOCAL = "UPDATE sis_ges_proyecto2022.loclaes SET estado = '?' WHERE (ID = '?')";
-    private static final String PS_INSERT_LOCAL = "INSERT INTO sis_ges_proyecto2022.afiliados (ID, direccion, numero_de_local, negocio, encargado, estado) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String PS_SELECT_LISTA_LOCALES = "SELECT * FROM afiliados where estado='activo'";
+    private static final String PS_UPDATE_LOCAL = "UPDATE sis_ges_proyecto2022.locales SET estado = '?' WHERE (ID = '?')";
+    private static final String PS_INSERT_LOCAL = "INSERT INTO sis_ges_proyecto2022.locales (ID, direccion, numero_de_local, negocio, encargado, afiliado ,estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String PS_SELECT_LISTA_LOCALES = "SELECT * FROM locales where estado='activo'";
     
      public static void ingresarAfiliado(Local local) throws LocalException, SQLException {
 
@@ -35,16 +38,187 @@ public class LocalPersistencia {
             ps.setString(3, local.getNumero_de_local());
             ps.setString(4, local.getNegocio());
             ps.setString(5, local.getEncargado());
-            ps.setString(6, "activo");
+            ps.setString(6, local.getAfiliado());
+            ps.setString(7, "activo");
 
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new LocalException("No pude insertar el usuario");
+            throw new LocalException("No pude insertar el local");
         } finally {
 
         }
 
     }
+     
+      public Locales listaLocales() throws LocalException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+        Locales locales = new Locales();
+        
+        PreparedStatement ps = null;
+        
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        ResultSet rs = null;
+        try {
+            con = conexion.conectar();
+            ps = con.prepareStatement(PS_SELECT_LISTA_LOCALES);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Local local = new Local();
+                local.setId(rs.getString("ID"));
+                local.setDireccion(rs.getString("direccion"));
+                local.setNumero_de_local(rs.getString("numero_de_local"));
+                local.setNegocio(rs.getString("negocio"));
+                local.setEncargado(rs.getString("encargado"));
+                local.setAfiliado(rs.getString("afiliado"));
+                locales.agregarLocal(local);
+            }
+        
+        } catch (SQLException e){
+            throw new LocalException("Error");
+        }
+        
+        return locales;
+
+      }
+      
+      public Locales listaLocalesRestringida(Afiliado afiliado) throws LocalException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+        Locales locales = new Locales();
+        
+        PreparedStatement ps = null;
+        
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        ResultSet rs = null;
+        try {
+            con = conexion.conectar();
+            ps = con.prepareStatement("SELECT * FROM locales where estado='activo' AND afiliado = '" + afiliado.getDocumento() + "'");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Local local = new Local();
+                local.setId(rs.getString("ID"));
+                local.setDireccion(rs.getString("direccion"));
+                local.setNumero_de_local(rs.getString("numero_de_local"));
+                local.setNegocio(rs.getString("negocio"));
+                local.setEncargado(rs.getString("encargado"));
+                local.setAfiliado(rs.getString("afiliado"));
+                locales.agregarLocal(local);
+            }
+        
+        } catch (SQLException e){
+            throw new LocalException("Error");
+        }
+        
+        return locales;
+
+    }
+      
+    public static void bajalocal(Local local) throws LocalException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 5 : cerrar la conexion a la 
+       
+        PreparedStatement ps = null;
+        
+        String id = local.getId();
+        
+
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        try {
+            con = conexion.conectar();
+            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET estado = 'inactivo'  WHERE (ID = '"+id+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            throw new LocalException("Error");
+        }
+        
+    }
+      
+    public static void altaLocal(Local local) throws LocalException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 5 : cerrar la conexion a la 
+       
+        PreparedStatement ps = null;
+        
+        String id = local.getId();
+        
+
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        try {
+            con = conexion.conectar();
+            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET estado = 'activo'  WHERE (ID = '"+id+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            throw new LocalException("Error");
+        }
+        
+    } 
     
+    public static void modificarLocal(Local local) throws LocalException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 5 : cerrar la conexion a la 
+       
+        PreparedStatement ps = null;
+        
+        String id = local.getId();
+        String direccion = local.getDireccion();
+        String numero_de_local = local.getNumero_de_local();
+        String negocio = local.getNegocio();
+        String encargado = local.getEncargado();
+        String afiliado = local.getAfiliado();
+        
+        
+
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        try {
+            con = conexion.conectar();
+            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET direccion = '"+direccion+"'  WHERE (ID = '"+id+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET numero_de_local = '"+numero_de_local+"'  WHERE (ID = '"+id+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET negocio = '"+negocio+"'  WHERE (ID = '"+id+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET encargado = '"+encargado+"'  WHERE (ID = '"+id+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET afiliado = '"+afiliado+"'  WHERE (ID = '"+id+"')";
+            ps = con.prepareStatement(sqlStm);
+            ps.executeUpdate();
+            
+
+        } catch (SQLException e) {
+            throw new LocalException("Error");
+        }
+        
+    }
 }
