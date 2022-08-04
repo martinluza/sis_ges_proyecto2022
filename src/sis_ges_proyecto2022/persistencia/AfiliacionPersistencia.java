@@ -120,7 +120,7 @@ public class AfiliacionPersistencia {
         ResultSet rs = null;
         try {
             Connection conexion = con.conectar();
-            String sqlStm = "select * from sis_ges_proyecto2022.afiliados where nombre='" + documento + "' and estado = 'activo';";
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliados where documento='" + documento + "' and estado = 'activo';";
             ps = conexion.prepareStatement(sqlStm);
             rs = ps.executeQuery();
             if (rs !=null&& rs.next()) {

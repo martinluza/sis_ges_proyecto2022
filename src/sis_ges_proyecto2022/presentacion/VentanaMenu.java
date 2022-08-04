@@ -59,6 +59,11 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
 
         busc_usr.setText("Buscar usario");
+        busc_usr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busc_usrActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +105,9 @@ public class VentanaMenu extends javax.swing.JFrame {
 
     private void ag_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ag_afActionPerformed
         // TODO add your handling code here:
+        
+        VentanaAgregarAfiliado ventana = new VentanaAgregarAfiliado();
+        ventana.setVisible(true);
     }//GEN-LAST:event_ag_afActionPerformed
 
     private void ag_usrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ag_usrActionPerformed
@@ -110,9 +118,14 @@ public class VentanaMenu extends javax.swing.JFrame {
 
     private void busc_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busc_afActionPerformed
         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_busc_afActionPerformed
+
+    private void busc_usrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busc_usrActionPerformed
+        // TODO add your handling code here:
         VentanaBuscarUsuario ventana = new VentanaBuscarUsuario();
         ventana.setVisible(true);
-    }//GEN-LAST:event_busc_afActionPerformed
+    }//GEN-LAST:event_busc_usrActionPerformed
 
     /**
      * @param args the command line arguments

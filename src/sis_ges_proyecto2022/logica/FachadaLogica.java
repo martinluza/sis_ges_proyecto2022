@@ -5,7 +5,9 @@
  */
 package sis_ges_proyecto2022.logica;
 
+import sis_ges_proyecto2022.excepciones.AfiliacionException;
 import sis_ges_proyecto2022.excepciones.UsuarioException;
+import sis_ges_proyecto2022.persistencia.AfiliacionPersistencia;
 import sis_ges_proyecto2022.persistencia.UsuarioPersistencia;
 
 /**
@@ -52,6 +54,18 @@ public class FachadaLogica {
     public static void altaUsuario(Usuario usuario) throws UsuarioException{
 
         UsuarioPersistencia.altaUsuario(usuario);
+    }
+    
+    public static Boolean existeAfiliado(Afiliado afiliado) throws AfiliacionException{
+
+        Boolean existe = false;
+        existe = AfiliacionPersistencia.existeAfiliado(afiliado);
+        return existe;
+    }
+    
+    public static void ingresarAfiliado(Afiliado afiliado) throws AfiliacionException{
+
+        AfiliacionPersistencia.ingresarAfiliado(afiliado);
     }
 
 }
