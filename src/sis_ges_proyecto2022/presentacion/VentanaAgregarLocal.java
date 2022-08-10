@@ -162,7 +162,7 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
         Local local = new Local();
         local.setId(id);
         local.setDireccion(direccion);
-        local.setNumero(numero);
+        local.setNumero_de_local(numero);
         local.setNegocio(negocio);
         local.setEncargado(encargado);
         local.setAfiliado(documento);
@@ -171,6 +171,7 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
             Boolean existe = FachadaLogica.existeLocal(id);
         
         
+<<<<<<< HEAD
             if (existe){
                 JLabel mensajeLbl = new JLabel();
                 JOptionPane.showMessageDialog(mensajeLbl, "id ya existe, cambiar");
@@ -187,6 +188,24 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
                     Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+=======
+        if (existe){
+            JLabel mensajeLbl = new JLabel();
+            JOptionPane.showMessageDialog(mensajeLbl, "id ya existe, cambiar");
+        } else {
+            try {
+            FachadaLogica.ingresarLocal(local);
+            JLabel mensajeLbl = new JLabel();
+            JOptionPane.showMessageDialog(mensajeLbl, "Local ingresado con exito");
+            new VentanaBuscarLocal(documento).setVisible(true);
+            this.dispose();
+        } catch (LocalException ex) {
+            Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+>>>>>>> 965e8da1866873276fecf69257b8513602d552e3
         } catch (LocalException ex) {
             Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
         }
