@@ -132,7 +132,7 @@ public class FachadaLogica {
     
     public static Boolean existeLocal(String id) throws LocalException {
         Boolean resultado = false;
-        LocalPersistencia.existeLocal(id);
+        resultado = LocalPersistencia.existeLocal(id);
         return resultado;
     }
 }
