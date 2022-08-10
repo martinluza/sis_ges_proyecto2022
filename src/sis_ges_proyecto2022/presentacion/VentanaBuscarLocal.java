@@ -41,7 +41,7 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
                 
                 datoFila[0] = local.getId();
                 datoFila[1] = local.getNegocio();
-                datoFila[2] = local.getNumero_de_local();
+                datoFila[2] = local.getNumero();
                 datoFila[3] = local.getEncargado();
                 datoFila[4] = local.getDireccion();
                 //datoFila[4] = preg.getPuntos();
