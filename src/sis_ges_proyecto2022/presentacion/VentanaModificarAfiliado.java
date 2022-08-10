@@ -292,6 +292,7 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             new VentanaBuscarLocal(documento, estado).setVisible(true);
+            this.dispose();
         } catch (LocalException ex) {
             Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
         }
