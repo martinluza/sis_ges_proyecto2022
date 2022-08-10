@@ -191,7 +191,7 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="nacimiento1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="DD-MM-YYYY"/>
+        <Property name="text" type="java.lang.String" value="DD/MM/YYYY"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nacimiento1ActionPerformed"/>

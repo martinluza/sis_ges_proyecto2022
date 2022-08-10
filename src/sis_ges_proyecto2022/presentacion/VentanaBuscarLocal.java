@@ -65,6 +65,7 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaLocal = new javax.swing.JTable();
+        Agregar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,13 +84,25 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaLocal);
 
+        Agregar1.setText("Agregar local");
+        Agregar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Agregar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(Agregar1)))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,7 +110,9 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(20, 20, 20)
+                .addComponent(Agregar1)
+                .addContainerGap())
         );
 
         pack();
@@ -115,6 +130,11 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
             Logger.getLogger(VentanaBuscarLocal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tablaLocalMouseClicked
+
+    private void Agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Agregar1ActionPerformed
+        // TODO add your handling code here:
+        new VentanaAgregarLocal(documento).setVisible(true);
+    }//GEN-LAST:event_Agregar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +173,7 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Agregar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaLocal;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,7 @@
  */
 package sis_ges_proyecto2022.logica;
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sis_ges_proyecto2022.excepciones.AfiliacionException;
@@ -123,5 +124,15 @@ public class FachadaLogica {
     
     public static void altaAfiliado(String documento) throws AfiliacionException {
         AfiliacionPersistencia.altaAfiliado(documento);
+    }
+    
+    public static void ingresarLocal(Local local) throws LocalException, SQLException {
+        LocalPersistencia.ingresarLocal(local);
+    }
+    
+    public static Boolean existeLocal(String id) throws LocalException {
+        Boolean resultado = false;
+        LocalPersistencia.existeLocal(id);
+        return resultado;
     }
 }

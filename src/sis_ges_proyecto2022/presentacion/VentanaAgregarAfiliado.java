@@ -91,7 +91,7 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
             }
         });
 
-        nacimiento1.setText("DD-MM-YYYY");
+        nacimiento1.setText("DD/MM/YYYY");
         nacimiento1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nacimiento1ActionPerformed(evt);
@@ -242,6 +242,7 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
             } else {
                 FachadaLogica.ingresarAfiliado(afiliado);
                 JOptionPane.showMessageDialog(mensajeLbl, "Afiliado ingresado con exito");
+                new VentanaModificarAfiliado(documento, "activo").setVisible(true);
             }
         } catch (AfiliacionException ex) {
             Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(Level.SEVERE, null, ex);

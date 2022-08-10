@@ -19,12 +19,12 @@ import sis_ges_proyecto2022.logica.Locales;
  * @author mauri
  */
 public class LocalPersistencia {
-    private static final String PS_SELECT_LOCAL = "SELECT * FROM locales where ID = ?";
-    private static final String PS_UPDATE_LOCAL = "UPDATE sis_ges_proyecto2022.locales SET estado = '?' WHERE (ID = '?')";
-    private static final String PS_INSERT_LOCAL = "INSERT INTO sis_ges_proyecto2022.locales (ID, direccion, numero_de_local, negocio, encargado, afiliado ,estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String PS_SELECT_LOCAL = "SELECT * FROM locales where id = ?";
+    private static final String PS_UPDATE_LOCAL = "UPDATE sis_ges_proyecto2022.locales SET estado = '?' WHERE (id = '?')";
+    private static final String PS_INSERT_LOCAL = "INSERT INTO sis_ges_proyecto2022.locales (id, direccion, numero_de_local, negocio, encargado, afiliado ,estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String PS_SELECT_LISTA_LOCALES = "SELECT * FROM locales where estado='activo'";
     
-     public static void ingresarAfiliado(Local local) throws LocalException, SQLException {
+     public static void ingresarLocal(Local local) throws LocalException, SQLException {
 
         PreparedStatement ps = null;
 
@@ -71,7 +71,7 @@ public class LocalPersistencia {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Local local = new Local();
-                local.setId(rs.getString("ID"));
+                local.setId(rs.getString("id"));
                 local.setDireccion(rs.getString("direccion"));
                 local.setNumero_de_local(rs.getString("numero_de_local"));
                 local.setNegocio(rs.getString("negocio"));
@@ -108,7 +108,7 @@ public class LocalPersistencia {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Local local = new Local();
-                local.setId(rs.getString("ID"));
+                local.setId(rs.getString("id"));
                 local.setDireccion(rs.getString("direccion"));
                 local.setNumero_de_local(rs.getString("numero_de_local"));
                 local.setNegocio(rs.getString("negocio"));
@@ -141,7 +141,7 @@ public class LocalPersistencia {
         Connection con = null;
         try {
             con = conexion.conectar();
-            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET estado = 'inactivo'  WHERE (ID = '"+id+"')";
+            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET estado = 'inactivo'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             
@@ -167,7 +167,7 @@ public class LocalPersistencia {
         Connection con = null;
         try {
             con = conexion.conectar();
-            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET estado = 'activo'  WHERE (ID = '"+id+"')";
+            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET estado = 'activo'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             
@@ -199,19 +199,19 @@ public class LocalPersistencia {
         Connection con = null;
         try {
             con = conexion.conectar();
-            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET direccion = '"+direccion+"'  WHERE (ID = '"+id+"')";
+            String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET direccion = '"+direccion+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
-            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET numero_de_local = '"+numero_de_local+"'  WHERE (ID = '"+id+"')";
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET numero_de_local = '"+numero_de_local+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
-            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET negocio = '"+negocio+"'  WHERE (ID = '"+id+"')";
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET negocio = '"+negocio+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
-            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET encargado = '"+encargado+"'  WHERE (ID = '"+id+"')";
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET encargado = '"+encargado+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
-            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET afiliado = '"+afiliado+"'  WHERE (ID = '"+id+"')";
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET afiliado = '"+afiliado+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             
@@ -232,10 +232,10 @@ public class LocalPersistencia {
         ResultSet rs = null;
         try {
             con = conexion.conectar();
-            ps = con.prepareStatement("SELECT * FROM locales where estado='activo' AND ID = '" + id + "'");
+            ps = con.prepareStatement("SELECT * FROM locales where estado='activo' AND id = '" + id + "'");
             rs = ps.executeQuery();
             rs.next();
-            local.setId(rs.getString("ID"));
+            local.setId(rs.getString("id"));
             local.setDireccion(rs.getString("direccion"));
             local.setNumero_de_local(rs.getString("numero_de_local"));
             local.setNegocio(rs.getString("negocio"));
@@ -249,5 +249,33 @@ public class LocalPersistencia {
         }
         
         return local;
+    }
+    
+    public static Boolean existeLocal(String id){
+        Boolean resultado = false;
+
+        Conexion con = new Conexion();
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.locales where id='" + id + "';";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();
+            if (rs !=null&& rs.next()) {
+                resultado = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return resultado;
+        
     }
 }
