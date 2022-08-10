@@ -5,11 +5,13 @@
  */
 package sis_ges_proyecto2022.presentacion;
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import sis_ges_proyecto2022.excepciones.AfiliacionException;
+import sis_ges_proyecto2022.excepciones.AfiliacionesException;
 import sis_ges_proyecto2022.logica.Afiliado;
 import sis_ges_proyecto2022.logica.FachadaLogica;
 
@@ -256,9 +258,14 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
             } else {
                 FachadaLogica.ingresarAfiliado(afiliado);
                 JOptionPane.showMessageDialog(mensajeLbl, "Afiliado ingresado con exito");
-                new VentanaModificarAfiliado(documento, "activo").setVisible(true);
+                new VentanaAfiliacion(documento).setVisible(true);
+                this.dispose();
             }
         } catch (AfiliacionException ex) {
+            Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AfiliacionesException ex) {
+            Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_IngresarAfiActionPerformed

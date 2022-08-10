@@ -5,6 +5,16 @@
  */
 package sis_ges_proyecto2022.presentacion;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import sis_ges_proyecto2022.excepciones.AfiliacionException;
+import sis_ges_proyecto2022.excepciones.AfiliacionesException;
+import sis_ges_proyecto2022.logica.Afiliaciones;
+import sis_ges_proyecto2022.logica.FachadaLogica;
+
 /**
  *
  * @author 006588869
@@ -14,8 +24,19 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
     /**
      * Creates new form VentanaAfiliacion
      */
-    public VentanaAfiliacion() {
+    String documento;
+    
+    public VentanaAfiliacion(String documento) throws AfiliacionesException, SQLException {
         initComponents();
+
+        this.documento = documento;
+        documento1.setText(documento);
+        
+    }
+    
+
+    private VentanaAfiliacion() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -27,21 +48,137 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        documento1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        afiliar = new javax.swing.JButton();
+        deuda = new javax.swing.JTextField();
+        cuota = new javax.swing.JTextField();
+        fecha_alta = new javax.swing.JTextField();
+        fecha_ult_pago = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Documento:");
+
+        documento1.setText("jLabel2");
+
+        jLabel2.setText("Deuda:");
+
+        jLabel3.setText("Cuota:");
+
+        jLabel4.setText("Fecha de último pago:");
+
+        jLabel5.setText("Fecha de alta:");
+
+        afiliar.setText("Afiliar");
+        afiliar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afiliarActionPerformed(evt);
+            }
+        });
+
+        deuda.setText("jTextField1");
+        deuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deudaActionPerformed(evt);
+            }
+        });
+
+        cuota.setText("jTextField1");
+
+        fecha_alta.setText("jTextField1");
+
+        fecha_ult_pago.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(documento1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fecha_alta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fecha_ult_pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(117, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(afiliar)
+                .addGap(139, 139, 139))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(documento1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(deuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(fecha_ult_pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fecha_alta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(46, 46, 46)
+                .addComponent(afiliar)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void afiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afiliarActionPerformed
+        // TODO add your handling code here:
+        int deuda1 = Integer.parseInt(this.deuda.getText());   
+        int cuota1 = Integer.parseInt(this.cuota.getText());   
+        String fecha_ult_pago1 = this.fecha_ult_pago.getText();
+        String fecha_alta1 = this.fecha_alta.getText();
+        Afiliaciones afiliacion = new Afiliaciones();
+        afiliacion.setId(documento);
+        afiliacion.setDeuda(deuda1);
+        afiliacion.setCuota(cuota1);
+        afiliacion.setFecha_ult_pago(fecha_ult_pago1);
+        afiliacion.setFecha_alta(fecha_alta1);
+        
+        try {
+            JLabel mensajeLbl = new JLabel();
+            FachadaLogica.ingresarAfiliacion(afiliacion);
+            JOptionPane.showMessageDialog(mensajeLbl, "Afiliacion ingresada con exito");
+            new VentanaModificarAfiliado(documento, "activo").setVisible(true);
+            this.dispose();
+        } catch (AfiliacionesException ex) {
+            Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaAfiliacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_afiliarActionPerformed
+
+    private void deudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deudaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deudaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +217,16 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton afiliar;
+    private javax.swing.JTextField cuota;
+    private javax.swing.JTextField deuda;
+    private javax.swing.JLabel documento1;
+    private javax.swing.JTextField fecha_alta;
+    private javax.swing.JTextField fecha_ult_pago;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

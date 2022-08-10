@@ -24,7 +24,7 @@ public class AfiliacionesPersistencia {
     
     private static final String PS_SELECT_AFILIACIONES = "SELECT * FROM afiliciones where ID = ?";
     private static final String PS_UPDATE_AFILIACIONES = "UPDATE sis_ges_proyecto2022.afiliaciones SET estado = '?' WHERE (documento = '?')";
-    private static final String PS_INSERT_AFILIACIONES = "INSERT INTO sis_ges_proyecto2022.afiliaciones (ID, deuda, cuota, fecha_ult_pago, fecha_alta, estado) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String PS_INSERT_AFILIACIONES = "INSERT INTO sis_ges_proyecto2022.afiliaciones (id, deuda, cuota, ultimo, alta, estado) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String PS_SELECT_LISTA_AFILIACIONES = "SELECT * FROM afiliaciones where estado='activo'";
     
     
@@ -38,7 +38,7 @@ public class AfiliacionesPersistencia {
             con = conexion.conectar();
             ps = con.prepareStatement(PS_INSERT_AFILIACIONES);
             ps.setString(1, afiliacion.getId());
-            ps.setInt(2, afiliacion.getCuota());
+            ps.setInt(2, afiliacion.getDeuda());
             ps.setInt(3, afiliacion.getCuota());
             
             ps.setDate(4, Fecha.convertirStringAFecha(afiliacion.getFecha_ult_pago()));
