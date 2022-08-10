@@ -24,10 +24,17 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
      * Creates new form VentanaModificarAfiliado
      */
     String documento;
+    String estado;
     
-    public VentanaModificarAfiliado(String documento) {
+    public VentanaModificarAfiliado(String documento, String estado) {
         initComponents();
         this.documento = documento;
+        this.estado = estado;
+        if (estado.equals("activo")){
+            baja.setText("dar de baja");
+        } else {
+            baja.setText("reactivar");
+        }
         documento1.setText(documento);
         Afiliado afiliado = new Afiliado();
         afiliado = FachadaLogica.buscarAfiliado(documento);
@@ -83,6 +90,7 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
         nacimiento1 = new javax.swing.JFormattedTextField();
         modificar = new javax.swing.JButton();
         Locales = new javax.swing.JButton();
+        baja = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,12 +139,21 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
             }
         });
 
+        baja.setText("Dar de baja");
+        baja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(baja)
+                .addGap(18, 18, 18)
                 .addComponent(modificar)
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
@@ -211,7 +228,9 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Locales)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(modificar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modificar)
+                    .addComponent(baja))
                 .addContainerGap())
         );
 
@@ -266,6 +285,29 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
         
     }//GEN-LAST:event_LocalesActionPerformed
 
+    private void bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaActionPerformed
+        if (estado.equals("activo")){    
+            try {
+                FachadaLogica.bajaAfiliado(documento);
+                JLabel mensajeLbl = new JLabel();
+                JOptionPane.showMessageDialog(mensajeLbl, "Afiliado dado de baja con exito");
+            } catch (AfiliacionException ex) {
+                Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                FachadaLogica.altaAfiliado(documento);
+                JLabel mensajeLbl = new JLabel();
+                JOptionPane.showMessageDialog(mensajeLbl, "Afiliado reactivado con exito");
+                
+            } catch (AfiliacionException ex) {
+                Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        new VentanaBuscarAfiliado().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bajaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,6 +346,7 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Locales;
     private javax.swing.JTextField apellido1;
+    private javax.swing.JToggleButton baja;
     private javax.swing.JTextField direccion1;
     private javax.swing.JTextField documento1;
     private javax.swing.JLabel jLabel1;

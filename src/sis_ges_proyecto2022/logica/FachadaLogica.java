@@ -67,6 +67,12 @@ public class FachadaLogica {
         return existe;
     }
     
+    public static String estadoAfiliado(String documento) throws AfiliacionException{
+
+        String estado = AfiliacionPersistencia.estadoAfiliado(documento);
+        return estado;
+    }
+    
     public static void ingresarAfiliado(Afiliado afiliado) throws AfiliacionException{
 
         AfiliacionPersistencia.ingresarAfiliado(afiliado);
@@ -76,6 +82,16 @@ public class FachadaLogica {
         Afiliados afiliados = new Afiliados();
         try {
             afiliados = AfiliacionPersistencia.listaAfiliados();
+        } catch (AfiliacionException ex) {
+            Logger.getLogger(FachadaLogica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return afiliados;
+    }
+    
+    public static Afiliados listaAfiliadosN(){
+        Afiliados afiliados = new Afiliados();
+        try {
+            afiliados = AfiliacionPersistencia.listaAfiliadosN();
         } catch (AfiliacionException ex) {
             Logger.getLogger(FachadaLogica.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,5 +115,13 @@ public class FachadaLogica {
     public static Local buscarLocal(String id) throws LocalException {
         Local local = LocalPersistencia.buscarLocal(id);
         return local;
+    }
+    
+    public static void bajaAfiliado(String documento) throws AfiliacionException {
+        AfiliacionPersistencia.bajaAfiliado(documento);
+    }
+    
+    public static void altaAfiliado(String documento) throws AfiliacionException {
+        AfiliacionPersistencia.altaAfiliado(documento);
     }
 }

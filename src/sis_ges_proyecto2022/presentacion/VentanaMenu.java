@@ -118,6 +118,8 @@ public class VentanaMenu extends javax.swing.JFrame {
 
     private void busc_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busc_afActionPerformed
         // TODO add your handling code here:
+        new VentanaBuscarAfiliado().setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_busc_afActionPerformed
 
