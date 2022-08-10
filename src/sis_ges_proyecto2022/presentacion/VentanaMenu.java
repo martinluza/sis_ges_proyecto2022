@@ -108,12 +108,14 @@ public class VentanaMenu extends javax.swing.JFrame {
         
         VentanaAgregarAfiliado ventana = new VentanaAgregarAfiliado();
         ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ag_afActionPerformed
 
     private void ag_usrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ag_usrActionPerformed
         // TODO add your handling code here:
         VentanaIngresarUsuario ventana = new VentanaIngresarUsuario();
         ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ag_usrActionPerformed
 
     private void busc_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busc_afActionPerformed
@@ -127,6 +129,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         VentanaBuscarUsuario ventana = new VentanaBuscarUsuario();
         ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_busc_usrActionPerformed
 
     /**

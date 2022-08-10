@@ -67,6 +67,7 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
         buscarDoc = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
         estado = new javax.swing.JToggleButton();
+        volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +108,13 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
             }
         });
 
+        volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,7 +132,10 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
                         .addComponent(estado))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(volver)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -138,7 +149,9 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
                     .addComponent(estado))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGap(38, 38, 38)
+                .addComponent(volver)
+                .addContainerGap())
         );
 
         pack();
@@ -245,6 +258,12 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_estadoActionPerformed
 
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        new VentanaMenu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,5 +306,6 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaAfiliado;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

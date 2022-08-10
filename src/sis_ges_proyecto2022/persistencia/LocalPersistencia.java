@@ -125,7 +125,44 @@ public class LocalPersistencia {
 
     }
       
-    public static void bajalocal(Local local) throws LocalException {
+    public static Locales listaLocalesRestringidaN(String documento) throws LocalException {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+        Locales locales = new Locales();
+        
+        PreparedStatement ps = null;
+        
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        ResultSet rs = null;
+        try {
+            con = conexion.conectar();
+            ps = con.prepareStatement("SELECT * FROM locales where estado='inactivo' AND afiliado = '" + documento + "'");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Local local = new Local();
+                local.setId(rs.getString("id"));
+                local.setDireccion(rs.getString("direccion"));
+                local.setNumero(rs.getString("numero"));
+                local.setNegocio(rs.getString("negocio"));
+                local.setEncargado(rs.getString("encargado"));
+                local.setAfiliado(rs.getString("afiliado"));
+                locales.agregarLocal(local);
+            }
+        
+        } catch (SQLException e){
+            throw new LocalException("Error");
+        }
+        
+        return locales;
+
+    }
+      
+    public static void bajaLocal(String id) throws LocalException {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement
@@ -134,7 +171,7 @@ public class LocalPersistencia {
        
         PreparedStatement ps = null;
         
-        String id = local.getId();
+        
         
 
         Conexion conexion = new Conexion();
@@ -151,7 +188,7 @@ public class LocalPersistencia {
         
     }
       
-    public static void altaLocal(Local local) throws LocalException {
+    public static void altaLocal(String id) throws LocalException {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement
@@ -160,7 +197,7 @@ public class LocalPersistencia {
        
         PreparedStatement ps = null;
         
-        String id = local.getId();
+        
         
 
         Conexion conexion = new Conexion();
@@ -232,7 +269,7 @@ public class LocalPersistencia {
         ResultSet rs = null;
         try {
             con = conexion.conectar();
-            ps = con.prepareStatement("SELECT * FROM locales where estado='activo' AND id = '" + id + "'");
+            ps = con.prepareStatement("SELECT * FROM locales where id = '" + id + "'");
             rs = ps.executeQuery();
             rs.next();
             local.setId(rs.getString("id"));

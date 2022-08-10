@@ -5,6 +5,11 @@
  */
 package sis_ges_proyecto2022.presentacion;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import sis_ges_proyecto2022.excepciones.LocalException;
 import sis_ges_proyecto2022.logica.FachadaLogica;
 import sis_ges_proyecto2022.logica.Local;
@@ -20,11 +25,21 @@ public class VentanaModificarLocal extends javax.swing.JFrame {
      */
     
     String id;
+    String documento;
+    String estado;
     
-    public VentanaModificarLocal(String id) throws LocalException {
+    public VentanaModificarLocal(String id, String documento, String estado) throws LocalException {
         initComponents();
         this.id = id;
+        this.documento = documento;
+        this.estado = estado;
+        if (estado.equals("activo")){
+            baja.setText("dar de baja");
+        } else {
+            baja.setText("reactivar");
+        }
         id1.setText(id);
+        afiliado1.setText(documento);
         Local local = FachadaLogica.buscarLocal(id);
     }
 
@@ -41,8 +56,123 @@ public class VentanaModificarLocal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        afiliado2 = new javax.swing.JLabel();
+        id2 = new javax.swing.JTextField();
+        direccion1 = new javax.swing.JTextField();
+        numero1 = new javax.swing.JTextField();
+        negocio1 = new javax.swing.JTextField();
+        encargado1 = new javax.swing.JTextField();
+        Ingresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         id1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        afiliado1 = new javax.swing.JLabel();
+        volver = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        direccion2 = new javax.swing.JTextField();
+        numero2 = new javax.swing.JTextField();
+        negocio2 = new javax.swing.JTextField();
+        encargado2 = new javax.swing.JTextField();
+        modificar = new javax.swing.JButton();
+        baja = new javax.swing.JButton();
+
+        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel3.setText("Id:");
+
+        jLabel4.setText("Direccion:");
+
+        jLabel5.setText("N° de Local:");
+
+        jLabel6.setText("Negocio:");
+
+        jLabel7.setText("Encargado:");
+
+        jLabel8.setText("Afiliado:");
+
+        afiliado2.setText("Afiliado");
+
+        Ingresar.setText("Ingresar");
+        Ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(id2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(direccion1)
+                            .addComponent(numero1)
+                            .addComponent(negocio1)
+                            .addComponent(encargado1)))
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(afiliado2)))
+                .addContainerGap(175, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Ingresar)
+                .addGap(38, 38, 38))
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(afiliado2))
+                .addGap(18, 18, 18)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(id2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(direccion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(numero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(negocio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(encargado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(Ingresar)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,29 +180,224 @@ public class VentanaModificarLocal extends javax.swing.JFrame {
 
         id1.setText("Id extraida");
 
+        jLabel2.setText("Afiliado:");
+
+        afiliado1.setText("Afiliado");
+
+        volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Direccion:");
+
+        jLabel10.setText("Numero de local:");
+
+        jLabel11.setText("Negocio:");
+
+        jLabel12.setText("Encargado:");
+
+        numero2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numero2ActionPerformed(evt);
+            }
+        });
+
+        modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
+
+        baja.setText("Baja");
+        baja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(id1)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(direccion2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(numero2)
+                    .addComponent(negocio2)
+                    .addComponent(encargado2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(volver)
+                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(id1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(afiliado1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addComponent(baja)
+                        .addGap(59, 59, 59)
+                        .addComponent(modificar)
+                        .addGap(26, 26, 26))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(id1))
-                .addContainerGap(262, Short.MAX_VALUE))
+                    .addComponent(id1)
+                    .addComponent(jLabel2)
+                    .addComponent(afiliado1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(direccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(numero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(negocio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(encargado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(volver)
+                    .addComponent(modificar)
+                    .addComponent(baja))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        try {
+            // TODO add your handling code here:
+            new VentanaBuscarLocal(documento, estado).setVisible(true);
+            this.dispose();
+        } catch (LocalException ex) {
+            Logger.getLogger(VentanaModificarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
+        // TODO add your handling code here:
+        String id = id1.getText();
+        String direccion = direccion1.getText();
+        String numero = numero1.getText();
+        String negocio = negocio1.getText();
+        String encargado = encargado1.getText();
+        Local local = new Local();
+        local.setId(id);
+        local.setDireccion(direccion);
+        local.setNumero(numero);
+        local.setNegocio(negocio);
+        local.setEncargado(encargado);
+        local.setAfiliado(documento);
+
+        try {
+            Boolean existe = FachadaLogica.existeLocal(id);
+
+            if (existe){
+                JLabel mensajeLbl = new JLabel();
+                JOptionPane.showMessageDialog(mensajeLbl, "id ya existe, cambiar");
+            } else {
+                try {
+                    FachadaLogica.ingresarLocal(local);
+                    JLabel mensajeLbl = new JLabel();
+                    JOptionPane.showMessageDialog(mensajeLbl, "Local ingresado con exito");
+                    new VentanaBuscarLocal(documento, estado).setVisible(true);
+                    this.dispose();
+                } catch (LocalException ex) {
+                    Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (LocalException ex) {
+            Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_IngresarActionPerformed
+
+    private void numero2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numero2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numero2ActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        // TODO add your handling code here:
+        Local local = new Local();
+        local.setId(id);
+        local.setAfiliado(documento);
+        local.setDireccion(direccion2.getText());
+        local.setEncargado(encargado2.getText());
+        local.setNegocio(negocio2.getText());
+        local.setNumero(numero2.getText());
+        try {
+            FachadaLogica.modificarLocal(local);
+            JLabel mensajeLbl = new JLabel();
+            JOptionPane.showMessageDialog(mensajeLbl, "Local modificado con exito");
+        } catch (LocalException ex) {
+            Logger.getLogger(VentanaModificarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaModificarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_modificarActionPerformed
+
+    private void bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaActionPerformed
+        // TODO add your handling code here:
+        /*if (estado.equals("activo")){
+            try {
+                FachadaLogica.bajaLocal(id);
+                JLabel mensajeLbl = new JLabel();
+                JOptionPane.showMessageDialog(mensajeLbl, "Local dado de baja con exito");
+                new VentanaBuscarLocal(documento, estado).setVisible(true);
+                this.dispose();
+            } catch (LocalException ex) {
+                Logger.getLogger(VentanaModificarLocal.class.getName()).log(Level.SEVERE, null, ex);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaModificarLocal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                FachadaLogica.altaLocal(id);
+                JLabel mensajeLbl = new JLabel();
+                JOptionPane.showMessageDialog(mensajeLbl, "Local reactivado con exito");
+                new VentanaBuscarLocal(documento, estado).setVisible(true);
+                this.dispose();
+            } catch (LocalException ex) {
+                Logger.getLogger(VentanaModificarLocal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaModificarLocal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
+    }//GEN-LAST:event_bajaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,7 +435,34 @@ public class VentanaModificarLocal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Ingresar;
+    private javax.swing.JLabel afiliado1;
+    private javax.swing.JLabel afiliado2;
+    private javax.swing.JButton baja;
+    private javax.swing.JTextField direccion1;
+    private javax.swing.JTextField direccion2;
+    private javax.swing.JTextField encargado1;
+    private javax.swing.JTextField encargado2;
     private javax.swing.JLabel id1;
+    private javax.swing.JTextField id2;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton modificar;
+    private javax.swing.JTextField negocio1;
+    private javax.swing.JTextField negocio2;
+    private javax.swing.JTextField numero1;
+    private javax.swing.JTextField numero2;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

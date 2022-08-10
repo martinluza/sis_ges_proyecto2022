@@ -113,6 +113,11 @@ public class FachadaLogica {
         return locales;
     }
     
+    public static Locales listaLocalesN(String documento) throws LocalException {
+        Locales locales = LocalPersistencia.listaLocalesRestringidaN(documento);
+        return locales;
+    }
+    
     public static Local buscarLocal(String id) throws LocalException {
         Local local = LocalPersistencia.buscarLocal(id);
         return local;
@@ -134,5 +139,17 @@ public class FachadaLogica {
         Boolean resultado = false;
         resultado = LocalPersistencia.existeLocal(id);
         return resultado;
+    }
+    
+    public static void modificarLocal(Local local) throws LocalException, SQLException {
+        LocalPersistencia.modificarLocal(local);
+    }
+    
+    public static void bajaLocal(String id) throws LocalException, SQLException {
+        LocalPersistencia.bajaLocal(id);
+    }
+    
+    public static void altaLocal(String id) throws LocalException, SQLException {
+        LocalPersistencia.altaLocal(id);
     }
 }

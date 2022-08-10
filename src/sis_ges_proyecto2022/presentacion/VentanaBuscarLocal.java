@@ -26,10 +26,14 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
      */
     
     String documento;
+    String estado;
             
-    public VentanaBuscarLocal(String documento) throws LocalException {
+    public VentanaBuscarLocal(String documento, String estado) throws LocalException {
         initComponents();
         this.documento = documento;
+        this.estado = estado;
+        documento1.setText(documento);
+        estado1.setText("activo");
         Locales locales = FachadaLogica.listaLocales(documento);
         DefaultTableModel modelo = (DefaultTableModel) tablaLocal.getModel();
         tablaLocal.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -66,6 +70,10 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaLocal = new javax.swing.JTable();
         Agregar1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        documento1 = new javax.swing.JLabel();
+        estado1 = new javax.swing.JToggleButton();
+        volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +99,24 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Afiliado:");
+
+        documento1.setText("Afiliado");
+
+        estado1.setText("Estado");
+        estado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estado1ActionPerformed(evt);
+            }
+        });
+
+        volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,20 +124,41 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(volver)
+                                .addGap(53, 53, 53)
+                                .addComponent(Agregar1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(136, 136, 136)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(documento1)))
+                        .addGap(0, 1, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(Agregar1)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(estado1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(documento1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(estado1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(Agregar1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Agregar1)
+                    .addComponent(volver))
                 .addContainerGap())
         );
 
@@ -125,7 +172,8 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
         String id = (String) model.getValueAt(index, 0);
         try {
             //System.out.println(documento);
-            new VentanaModificarLocal(id).setVisible(true);
+            new VentanaModificarLocal(id, documento, estado1.getText()).setVisible(true);
+            this.dispose();
         } catch (LocalException ex) {
             Logger.getLogger(VentanaBuscarLocal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -133,8 +181,72 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
 
     private void Agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Agregar1ActionPerformed
         // TODO add your handling code here:
-        new VentanaAgregarLocal(documento).setVisible(true);
+        new VentanaAgregarLocal(documento, estado).setVisible(true);
     }//GEN-LAST:event_Agregar1ActionPerformed
+
+    private void estado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado1ActionPerformed
+        // TODO add your handling code here:
+        
+        if (estado1.getText().equals("activo")){
+            try {
+                estado1.setText("inactivo");
+                Locales locales = FachadaLogica.listaLocalesN(documento);
+                DefaultTableModel modelo = (DefaultTableModel) tablaLocal.getModel();
+                modelo.setRowCount(0);
+                tablaLocal.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                
+                //5es la cantidad de columnas
+                
+                Object[] datoFila = new Object[5];
+                for (int i= 0; i < locales.getLocales().size(); i++) {
+                    
+                    Local local = (Local) locales.getLocales().get(i);
+                    
+                    datoFila[0] = local.getId();
+                    datoFila[1] = local.getNegocio();
+                    datoFila[2] = local.getNumero();
+                    datoFila[3] = local.getEncargado();
+                    datoFila[4] = local.getDireccion();
+                    
+                    modelo.addRow(datoFila);
+                }
+            } catch (LocalException ex) {
+                Logger.getLogger(VentanaBuscarLocal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                estado1.setText("activo");
+                Locales locales = FachadaLogica.listaLocales(documento);
+                DefaultTableModel modelo = (DefaultTableModel) tablaLocal.getModel();
+                modelo.setRowCount(0);
+                tablaLocal.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                
+                //5es la cantidad de columnas
+                
+                Object[] datoFila = new Object[5];
+                for (int i= 0; i < locales.getLocales().size(); i++) {
+                    
+                    Local local = (Local) locales.getLocales().get(i);
+                    
+                    datoFila[0] = local.getId();
+                    datoFila[1] = local.getNegocio();
+                    datoFila[2] = local.getNumero();
+                    datoFila[3] = local.getEncargado();
+                    datoFila[4] = local.getDireccion();
+                    
+                    modelo.addRow(datoFila);
+                }
+            } catch (LocalException ex) {
+                Logger.getLogger(VentanaBuscarLocal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_estado1ActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        new VentanaModificarAfiliado(documento, estado).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,7 +286,11 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar1;
+    private javax.swing.JLabel documento1;
+    private javax.swing.JToggleButton estado1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaLocal;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

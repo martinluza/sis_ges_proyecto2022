@@ -25,10 +25,12 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
      */
     
     String documento;
+    String estado;
     
-    public VentanaAgregarLocal(String documento) {
+    public VentanaAgregarLocal(String documento, String estado) {
         initComponents();
         this.documento = documento;
+        this.estado = estado;
         afiliado1.setText(documento);
     }
 
@@ -177,7 +179,7 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
                     FachadaLogica.ingresarLocal(local);
                     JLabel mensajeLbl = new JLabel();
                     JOptionPane.showMessageDialog(mensajeLbl, "Local ingresado con exito");
-                    new VentanaBuscarLocal(documento).setVisible(true);
+                    new VentanaBuscarLocal(documento, estado).setVisible(true);
                     this.dispose();
                 } catch (LocalException ex) {
                     Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);

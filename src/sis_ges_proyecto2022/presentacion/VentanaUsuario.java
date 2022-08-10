@@ -166,6 +166,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(mensajeLbl, "Bienvenido/a " + usuario.getNombre());
                     VentanaMenu ventana = new VentanaMenu();
                     ventana.setVisible(true);
+                    this.dispose();
                 } else {
                     JLabel mensajeLbl = new JLabel();
                     JOptionPane.showMessageDialog(mensajeLbl, "Usuario " + usuario.getNombre() + " esta inactivo");

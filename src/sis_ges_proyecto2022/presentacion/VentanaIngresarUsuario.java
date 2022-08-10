@@ -62,6 +62,11 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
         jLabel3.setText("Repetir clave");
 
         volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,6 +155,12 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_IngresarActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        new VentanaMenu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
 
     /**
      * @param args the command line arguments

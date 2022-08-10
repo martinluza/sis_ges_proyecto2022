@@ -91,6 +91,7 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
         modificar = new javax.swing.JButton();
         Locales = new javax.swing.JButton();
         baja = new javax.swing.JToggleButton();
+        volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,45 +147,56 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
             }
         });
 
+        volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(baja)
-                .addGap(18, 18, 18)
-                .addComponent(modificar)
-                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(volver)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Locales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rubro1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mail1)
-                    .addComponent(telefono1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nacionalidad1)
-                            .addComponent(apellido1)
-                            .addComponent(direccion1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(documento1)
-                    .addComponent(nombre1)
-                    .addComponent(nacimiento1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(113, 113, 113))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Locales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rubro1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(mail1)
+                            .addComponent(telefono1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nacionalidad1)
+                                    .addComponent(apellido1)
+                                    .addComponent(direccion1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(documento1)
+                            .addComponent(nombre1)
+                            .addComponent(nacimiento1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(113, 113, 113))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(baja)
+                        .addGap(18, 18, 18)
+                        .addComponent(modificar)
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +242,8 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modificar)
-                    .addComponent(baja))
+                    .addComponent(baja)
+                    .addComponent(volver))
                 .addContainerGap())
         );
 
@@ -278,7 +291,7 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
     private void LocalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalesActionPerformed
         try {
             // TODO add your handling code here:
-            new VentanaBuscarLocal(documento).setVisible(true);
+            new VentanaBuscarLocal(documento, estado).setVisible(true);
         } catch (LocalException ex) {
             Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -307,6 +320,12 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
         new VentanaBuscarAfiliado().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bajaActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        new VentanaBuscarAfiliado().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,5 +384,6 @@ public class VentanaModificarAfiliado extends javax.swing.JFrame {
     private javax.swing.JTextField nombre1;
     private javax.swing.JTextField rubro1;
     private javax.swing.JTextField telefono1;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
