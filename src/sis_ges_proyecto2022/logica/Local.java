@@ -12,7 +12,7 @@ package sis_ges_proyecto2022.logica;
 public class Local {
     private String id;
     private String direccion;
-    private String numero;
+    private String numero_de_local;
     private String negocio;
     private String encargado;
     private String afiliado;
@@ -41,12 +41,12 @@ public class Local {
         this.direccion = direccion;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getNumero_de_local() {
+        return numero_de_local;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setNumero_de_local(String numero_de_local) {
+        this.numero_de_local = numero_de_local;
     }
 
     public String getNegocio() {

@@ -160,7 +160,7 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
         Local local = new Local();
         local.setId(id);
         local.setDireccion(direccion);
-        local.setNumero(numero);
+        local.setNumero_de_local(numero);
         local.setNegocio(negocio);
         local.setEncargado(encargado);
         local.setAfiliado(documento);
@@ -169,22 +169,22 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
             Boolean existe = FachadaLogica.existeLocal(id);
         
         
-            if (existe){
-                JLabel mensajeLbl = new JLabel();
-                JOptionPane.showMessageDialog(mensajeLbl, "id ya existe, cambiar");
-            } else {
-                try {
-                    FachadaLogica.ingresarLocal(local);
-                    JLabel mensajeLbl = new JLabel();
-                    JOptionPane.showMessageDialog(mensajeLbl, "Local ingresado con exito");
-                    new VentanaBuscarLocal(documento).setVisible(true);
-                    this.dispose();
-                } catch (LocalException ex) {
-                    Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+        if (existe){
+            JLabel mensajeLbl = new JLabel();
+            JOptionPane.showMessageDialog(mensajeLbl, "id ya existe, cambiar");
+        } else {
+            try {
+            FachadaLogica.ingresarLocal(local);
+            JLabel mensajeLbl = new JLabel();
+            JOptionPane.showMessageDialog(mensajeLbl, "Local ingresado con exito");
+            new VentanaBuscarLocal(documento).setVisible(true);
+            this.dispose();
+        } catch (LocalException ex) {
+            Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
         } catch (LocalException ex) {
             Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
         }
