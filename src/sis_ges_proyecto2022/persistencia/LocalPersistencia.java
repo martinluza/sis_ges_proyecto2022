@@ -88,7 +88,7 @@ public class LocalPersistencia {
 
       }
       
-      public Locales listaLocalesRestringida(Afiliado afiliado) throws LocalException {
+      public static Locales listaLocalesRestringida(String documento) throws LocalException {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement
@@ -104,7 +104,7 @@ public class LocalPersistencia {
         ResultSet rs = null;
         try {
             con = conexion.conectar();
-            ps = con.prepareStatement("SELECT * FROM locales where estado='activo' AND afiliado = '" + afiliado.getDocumento() + "'");
+            ps = con.prepareStatement("SELECT * FROM locales where estado='activo' AND afiliado = '" + documento + "'");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Local local = new Local();
@@ -220,5 +220,34 @@ public class LocalPersistencia {
             throw new LocalException("Error");
         }
         
+    }
+    
+    public static Local buscarLocal(String id) throws LocalException {
+        Local local = new Local();
+        
+        PreparedStatement ps = null;
+        
+        Conexion conexion = new Conexion();
+        Connection con = null;
+        ResultSet rs = null;
+        try {
+            con = conexion.conectar();
+            ps = con.prepareStatement("SELECT * FROM locales where estado='activo' AND ID = '" + id + "'");
+            rs = ps.executeQuery();
+            rs.next();
+            local.setId(rs.getString("ID"));
+            local.setDireccion(rs.getString("direccion"));
+            local.setNumero_de_local(rs.getString("numero_de_local"));
+            local.setNegocio(rs.getString("negocio"));
+            local.setEncargado(rs.getString("encargado"));
+            local.setAfiliado(rs.getString("afiliado"));
+            
+            
+        
+        } catch (SQLException e){
+            throw new LocalException("Error");
+        }
+        
+        return local;
     }
 }

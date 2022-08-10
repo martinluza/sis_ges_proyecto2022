@@ -62,7 +62,7 @@ public class AfiliacionPersistencia {
 
     }
      
-     public Afiliados listaAfiliados() throws AfiliacionException {
+     public static Afiliados listaAfiliados() throws AfiliacionException {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement
@@ -247,6 +247,52 @@ public class AfiliacionPersistencia {
             throw new AfiliacionException("Error2");
         }
         
+    }
+     
+      public static Afiliado buscarAfiliado(String documento) {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+       
+
+        Conexion con = new Conexion();
+        
+        
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+        Afiliado afiliado = new Afiliado();
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliados where documento='" + documento + "' and estado = 'activo';";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();
+            rs.next();
+            
+            afiliado.setDocumento(rs.getString("documento"));
+            afiliado.setNombre(rs.getString("nombre"));
+            afiliado.setApellido(rs.getString("apellido"));
+            afiliado.setNacionalidad(rs.getString("nacionalidad"));
+            afiliado.setDireccion(rs.getString("direccion"));
+            afiliado.setTelefono(rs.getInt("telefono"));
+            afiliado.setMail(rs.getString("mail"));
+            afiliado.setNacimiento(rs.getDate("nacimiento").toString());
+            afiliado.setRubro(rs.getString("rubro"));
+            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return afiliado;
+
     }
      
 }

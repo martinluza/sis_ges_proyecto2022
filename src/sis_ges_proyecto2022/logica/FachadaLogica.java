@@ -5,9 +5,13 @@
  */
 package sis_ges_proyecto2022.logica;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sis_ges_proyecto2022.excepciones.AfiliacionException;
+import sis_ges_proyecto2022.excepciones.LocalException;
 import sis_ges_proyecto2022.excepciones.UsuarioException;
 import sis_ges_proyecto2022.persistencia.AfiliacionPersistencia;
+import sis_ges_proyecto2022.persistencia.LocalPersistencia;
 import sis_ges_proyecto2022.persistencia.UsuarioPersistencia;
 
 /**
@@ -67,5 +71,33 @@ public class FachadaLogica {
 
         AfiliacionPersistencia.ingresarAfiliado(afiliado);
     }
-
+    
+    public static Afiliados listaAfiliados(){
+        Afiliados afiliados = new Afiliados();
+        try {
+            afiliados = AfiliacionPersistencia.listaAfiliados();
+        } catch (AfiliacionException ex) {
+            Logger.getLogger(FachadaLogica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return afiliados;
+    }
+    
+    public static Afiliado buscarAfiliado(String documento){
+        Afiliado afiliado = AfiliacionPersistencia.buscarAfiliado(documento);
+        return afiliado;
+    }
+    
+    public static void modificarAfiliado(Afiliado afiliado) throws AfiliacionException{
+        AfiliacionPersistencia.modificarAfiliado(afiliado);
+    }
+    
+    public static Locales listaLocales(String documento) throws LocalException {
+        Locales locales = LocalPersistencia.listaLocalesRestringida(documento);
+        return locales;
+    }
+    
+    public static Local buscarLocal(String id) throws LocalException {
+        Local local = LocalPersistencia.buscarLocal(id);
+        return local;
+    }
 }

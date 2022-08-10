@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import sis_ges_proyecto2022.excepciones.AfiliacionException;
+import sis_ges_proyecto2022.excepciones.LocalException;
 import sis_ges_proyecto2022.logica.Afiliado;
 import sis_ges_proyecto2022.logica.FachadaLogica;
 
@@ -17,13 +18,40 @@ import sis_ges_proyecto2022.logica.FachadaLogica;
  *
  * @author mauri
  */
-public class VentanaAgregarAfiliado extends javax.swing.JFrame {
-
+public class VentanaModificarAfiliado extends javax.swing.JFrame {
+    
     /**
-     * Creates new form VentanaAgregarAfiliado
+     * Creates new form VentanaModificarAfiliado
      */
-    public VentanaAgregarAfiliado() {
+    String documento;
+    
+    public VentanaModificarAfiliado(String documento) {
         initComponents();
+        this.documento = documento;
+        documento1.setText(documento);
+        Afiliado afiliado = new Afiliado();
+        afiliado = FachadaLogica.buscarAfiliado(documento);
+        nombre1.setText(afiliado.getNombre());
+        apellido1.setText(afiliado.getApellido());
+        nacionalidad1.setText(afiliado.getNacionalidad());
+        direccion1.setText(afiliado.getDireccion());
+        telefono1.setText(Integer.toString(afiliado.getTelefono()));
+        mail1.setText(afiliado.getMail());
+        System.out.println(afiliado.getNacimiento());
+        //afiliado.setNacimiento("0123-56-89");
+        String y = afiliado.getNacimiento().substring(0, 4);
+        String m = afiliado.getNacimiento().substring(5, 7);
+        String d = afiliado.getNacimiento().substring(8, 10);
+        nacimiento1.setText(d + "/" + m + "/" + y);
+        System.out.println(afiliado.getNacimiento());
+        System.out.println(y);
+        System.out.println(d);
+        System.out.println(m);
+        rubro1.setText(afiliado.getRubro());
+    }
+
+    private VentanaModificarAfiliado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -35,70 +63,47 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        documento1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        nombre1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        apellido1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        nacionalidad1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        direccion1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        telefono1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        mail1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        documento1 = new javax.swing.JTextField();
-        nombre1 = new javax.swing.JTextField();
-        nacimiento1 = new javax.swing.JFormattedTextField();
-        apellido1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        nacionalidad1 = new javax.swing.JTextField();
-        direccion1 = new javax.swing.JTextField();
-        telefono1 = new javax.swing.JTextField();
-        mail1 = new javax.swing.JTextField();
         rubro1 = new javax.swing.JTextField();
-        IngresarAfi = new javax.swing.JButton();
-
-        jLabel5.setText("Nacionalidad:");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField4.setText("jTextField4");
+        nacimiento1 = new javax.swing.JFormattedTextField();
+        modificar = new javax.swing.JButton();
+        Locales = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ingresar afiliado");
+        jLabel1.setText("Documento:");
 
-        jLabel2.setText("Documento:");
-
-        jLabel3.setText("Nombre:");
-
-        jLabel4.setText("Apellido:");
-
-        jLabel6.setText("Direccion:");
-
-        jLabel7.setText("Telefono:");
-
-        jLabel8.setText("Mail:");
-
-        jLabel9.setText("Nacimiento:");
-
-        jLabel10.setText("Rubro:");
-
+        documento1.setEditable(false);
         documento1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 documento1ActionPerformed(evt);
             }
         });
 
-        nacimiento1.setText("DD-MM-YYYY");
-        nacimiento1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nacimiento1ActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Nombre:");
 
-        jLabel11.setText("Nacionalidad:");
+        jLabel3.setText("Apelllido:");
+
+        jLabel4.setText("Nacionalidad:");
+
+        jLabel5.setText("Direccion:");
+
+        jLabel6.setText("Telefono:");
 
         telefono1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,10 +111,23 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
             }
         });
 
-        IngresarAfi.setText("Ingresar");
-        IngresarAfi.addActionListener(new java.awt.event.ActionListener() {
+        jLabel7.setText("Mail:");
+
+        jLabel8.setText("Nacimiento:");
+
+        jLabel9.setText("Rubro:");
+
+        modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IngresarAfiActionPerformed(evt);
+                modificarActionPerformed(evt);
+            }
+        });
+
+        Locales.setText("Locales");
+        Locales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocalesActionPerformed(evt);
             }
         });
 
@@ -117,91 +135,88 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nacimiento1)
-                    .addComponent(documento1)
-                    .addComponent(nombre1)
-                    .addComponent(apellido1)
-                    .addComponent(nacionalidad1)
-                    .addComponent(direccion1)
-                    .addComponent(telefono1)
-                    .addComponent(mail1)
-                    .addComponent(rubro1))
-                .addGap(32, 32, 32))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel1)
-                .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(IngresarAfi)
-                .addContainerGap())
+                .addComponent(modificar)
+                .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Locales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rubro1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mail1)
+                    .addComponent(telefono1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nacionalidad1)
+                            .addComponent(apellido1)
+                            .addComponent(direccion1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(documento1)
+                    .addComponent(nombre1)
+                    .addComponent(nacimiento1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(documento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(documento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(apellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(apellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
                     .addComponent(nacionalidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(direccion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(direccion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(telefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(telefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(mail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(mail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(nacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(nacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
                     .addComponent(rubro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(IngresarAfi)
+                .addGap(18, 18, 18)
+                .addComponent(Locales)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(modificar)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nacimiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nacimiento1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nacimiento1ActionPerformed
 
     private void documento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documento1ActionPerformed
         // TODO add your handling code here:
@@ -211,10 +226,9 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_telefono1ActionPerformed
 
-    private void IngresarAfiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarAfiActionPerformed
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
         
-        String documento = this.documento1.getText();
         String nombre = this.nombre1.getText();
         String apellido = this.apellido1.getText();
         String nacionalidad = this.nacionalidad1.getText();
@@ -233,20 +247,24 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
         afiliado.setMail(mail);
         afiliado.setNacimiento(nacimiento);
         afiliado.setRubro(rubro);
-        
-        
         try {
+            FachadaLogica.modificarAfiliado(afiliado);
             JLabel mensajeLbl = new JLabel();
-            if (FachadaLogica.existeAfiliado(afiliado)){
-                JOptionPane.showMessageDialog(mensajeLbl, "Ya existe afiliado");
-            } else {
-                FachadaLogica.ingresarAfiliado(afiliado);
-                JOptionPane.showMessageDialog(mensajeLbl, "Afiliado ingresado con exito");
-            }
+            JOptionPane.showMessageDialog(mensajeLbl, "Afiliado modificado con exito");
         } catch (AfiliacionException ex) {
-            Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_IngresarAfiActionPerformed
+    }//GEN-LAST:event_modificarActionPerformed
+
+    private void LocalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalesActionPerformed
+        try {
+            // TODO add your handling code here:
+            new VentanaBuscarLocal(documento).setVisible(true);
+        } catch (LocalException ex) {
+            Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_LocalesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,32 +283,30 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaModificarAfiliado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaAgregarAfiliado().setVisible(true);
+                new VentanaModificarAfiliado().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton IngresarAfi;
+    private javax.swing.JButton Locales;
     private javax.swing.JTextField apellido1;
     private javax.swing.JTextField direccion1;
     private javax.swing.JTextField documento1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -299,9 +315,8 @@ public class VentanaAgregarAfiliado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField mail1;
+    private javax.swing.JButton modificar;
     private javax.swing.JFormattedTextField nacimiento1;
     private javax.swing.JTextField nacionalidad1;
     private javax.swing.JTextField nombre1;
