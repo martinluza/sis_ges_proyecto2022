@@ -41,8 +41,8 @@ public class AfiliacionesPersistencia {
             ps.setInt(2, afiliacion.getDeuda());
             ps.setInt(3, afiliacion.getCuota());
             
-            ps.setDate(4, Fecha.convertirStringAFecha(afiliacion.getFecha_ult_pago()));
-            ps.setDate(5, Fecha.convertirStringAFecha(afiliacion.getFecha_alta()));
+            ps.setDate(4, Fecha.convertirStringAFecha(afiliacion.getUltimo()));
+            ps.setDate(5, Fecha.convertirStringAFecha(afiliacion.getAlta()));
             
             ps.setString(6, "activo");
             
@@ -79,7 +79,7 @@ public class AfiliacionesPersistencia {
         ResultSet rs = null;
         try {
             Connection conexion = con.conectar();
-            String sqlStm = "select * from sis_ges_proyecto2022.afiliaciones where ID='" + id + "' and estado = 'activo';";
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliaciones where id='" + id + "' and estado = 'activo';";
             ps = conexion.prepareStatement(sqlStm);
             rs = ps.executeQuery();
             if (rs !=null&& rs.next()) {
@@ -113,7 +113,7 @@ public class AfiliacionesPersistencia {
         Connection con = null;
         try {
             con = conexion.conectar();
-            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET estado = 'inactivo'  WHERE (ID = '"+id+"')";
+            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET estado = 'inactivo'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             
@@ -139,7 +139,7 @@ public class AfiliacionesPersistencia {
         Connection con = null;
         try {
             con = conexion.conectar();
-            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET estado = 'activo'  WHERE (documento = '"+id+"')";
+            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliados SET estado = 'activo'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             
@@ -161,8 +161,8 @@ public class AfiliacionesPersistencia {
         String id = afiliacion.getId();
         int deuda = afiliacion.getDeuda();
         int cuota = afiliacion.getCuota();
-        String fecha_ult_pago = afiliacion.getFecha_ult_pago();
-        String fecha_alta = afiliacion.getFecha_alta();
+        String ultimo = afiliacion.getUltimo();
+        String alta = afiliacion.getAlta();
         
         
 
@@ -170,17 +170,17 @@ public class AfiliacionesPersistencia {
         Connection con = null;
         try {
             con = conexion.conectar();
-            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliaciones SET deuda = '"+deuda+"'  WHERE (ID = '"+id+"')";
+            String sqlStm = "UPDATE sis_ges_proyecto2022.afiliaciones SET deuda = '"+deuda+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
-            sqlStm = "UPDATE sis_ges_proyecto2022.afiliaciones SET cuota = '"+cuota+"'  WHERE (ID = '"+id+"')";
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliaciones SET cuota = '"+cuota+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             
-            sqlStm = "UPDATE sis_ges_proyecto2022.afiliaciones SET fecha_ult_pago = '"+Fecha.convertirStringAFecha(fecha_ult_pago)+"'  WHERE (documento = '"+id+"')";
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliaciones SET ultimo = '"+Fecha.convertirStringAFecha(ultimo)+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
-            sqlStm = "UPDATE sis_ges_proyecto2022.afiliaciones SET fecha_alta = '"+Fecha.convertirStringAFecha(fecha_alta)+"'  WHERE (documento = '"+id+"')";
+            sqlStm = "UPDATE sis_ges_proyecto2022.afiliaciones SET alta = '"+Fecha.convertirStringAFecha(alta)+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
 

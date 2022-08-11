@@ -57,8 +57,8 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
         afiliar = new javax.swing.JButton();
         deuda = new javax.swing.JTextField();
         cuota = new javax.swing.JTextField();
-        fecha_alta = new javax.swing.JTextField();
-        fecha_ult_pago = new javax.swing.JTextField();
+        alta1 = new javax.swing.JTextField();
+        ultimo1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,9 +90,9 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
 
         cuota.setText("jTextField1");
 
-        fecha_alta.setText("jTextField1");
+        alta1.setText("jTextField1");
 
-        fecha_ult_pago.setText("jTextField1");
+        ultimo1.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,8 +111,8 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
                     .addComponent(documento1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fecha_alta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fecha_ult_pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(alta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ultimo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -137,10 +137,10 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(fecha_ult_pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ultimo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fecha_alta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(46, 46, 46)
                 .addComponent(afiliar)
@@ -154,14 +154,14 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
         // TODO add your handling code here:
         int deuda1 = Integer.parseInt(this.deuda.getText());   
         int cuota1 = Integer.parseInt(this.cuota.getText());   
-        String fecha_ult_pago1 = this.fecha_ult_pago.getText();
-        String fecha_alta1 = this.fecha_alta.getText();
+        String ultimo = this.ultimo1.getText();
+        String alta = this.alta1.getText();
         Afiliaciones afiliacion = new Afiliaciones();
         afiliacion.setId(documento);
         afiliacion.setDeuda(deuda1);
         afiliacion.setCuota(cuota1);
-        afiliacion.setFecha_ult_pago(fecha_ult_pago1);
-        afiliacion.setFecha_alta(fecha_alta1);
+        afiliacion.setUltimo(ultimo);
+        afiliacion.setAlta(alta);
         
         try {
             JLabel mensajeLbl = new JLabel();
@@ -218,15 +218,15 @@ public class VentanaAfiliacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton afiliar;
+    private javax.swing.JTextField alta1;
     private javax.swing.JTextField cuota;
     private javax.swing.JTextField deuda;
     private javax.swing.JLabel documento1;
-    private javax.swing.JTextField fecha_alta;
-    private javax.swing.JTextField fecha_ult_pago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField ultimo1;
     // End of variables declaration//GEN-END:variables
 }

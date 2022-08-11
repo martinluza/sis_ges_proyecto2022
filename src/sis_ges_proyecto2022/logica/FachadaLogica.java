@@ -9,9 +9,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sis_ges_proyecto2022.excepciones.AfiliacionException;
+import sis_ges_proyecto2022.excepciones.AfiliacionesException;
 import sis_ges_proyecto2022.excepciones.LocalException;
 import sis_ges_proyecto2022.excepciones.UsuarioException;
 import sis_ges_proyecto2022.persistencia.AfiliacionPersistencia;
+import sis_ges_proyecto2022.persistencia.AfiliacionesPersistencia;
 import sis_ges_proyecto2022.persistencia.LocalPersistencia;
 import sis_ges_proyecto2022.persistencia.UsuarioPersistencia;
 
@@ -151,5 +153,9 @@ public class FachadaLogica {
     
     public static void altaLocal(String id) throws LocalException, SQLException {
         LocalPersistencia.altaLocal(id);
+    }
+    
+    public static void ingresarAfiliacion(Afiliaciones afiliacion) throws AfiliacionesException, SQLException {
+        AfiliacionesPersistencia.ingresarAfiliacion(afiliacion);
     }
 }

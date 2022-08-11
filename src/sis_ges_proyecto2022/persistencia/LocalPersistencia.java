@@ -21,7 +21,7 @@ import sis_ges_proyecto2022.logica.Locales;
 public class LocalPersistencia {
     private static final String PS_SELECT_LOCAL = "SELECT * FROM locales where id = ?";
     private static final String PS_UPDATE_LOCAL = "UPDATE sis_ges_proyecto2022.locales SET estado = '?' WHERE (id = '?')";
-    private static final String PS_INSERT_LOCAL = "INSERT INTO sis_ges_proyecto2022.locales (id, direccion, numero_de_local, negocio, encargado, afiliado ,estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String PS_INSERT_LOCAL = "INSERT INTO sis_ges_proyecto2022.locales (id, direccion, numero, negocio, encargado, afiliado ,estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String PS_SELECT_LISTA_LOCALES = "SELECT * FROM locales where estado='activo'";
     
      public static void ingresarLocal(Local local) throws LocalException, SQLException {
@@ -35,7 +35,7 @@ public class LocalPersistencia {
             ps = con.prepareStatement(PS_INSERT_LOCAL);
             ps.setString(1, local.getId() );
             ps.setString(2, local.getDireccion() );
-            ps.setString(3, local.getNumero_de_local());
+            ps.setString(3, local.getNumero());
             ps.setString(4, local.getNegocio());
             ps.setString(5, local.getEncargado());
             ps.setString(6, local.getAfiliado());
@@ -73,7 +73,7 @@ public class LocalPersistencia {
                 Local local = new Local();
                 local.setId(rs.getString("id"));
                 local.setDireccion(rs.getString("direccion"));
-                local.setNumero_de_local(rs.getString("numero_de_local"));
+                local.setNumero(rs.getString("numero"));
                 local.setNegocio(rs.getString("negocio"));
                 local.setEncargado(rs.getString("encargado"));
                 local.setAfiliado(rs.getString("afiliado"));
@@ -110,7 +110,7 @@ public class LocalPersistencia {
                 Local local = new Local();
                 local.setId(rs.getString("id"));
                 local.setDireccion(rs.getString("direccion"));
-                local.setNumero_de_local(rs.getString("numero_de_local"));
+                local.setNumero(rs.getString("numero"));
                 local.setNegocio(rs.getString("negocio"));
                 local.setEncargado(rs.getString("encargado"));
                 local.setAfiliado(rs.getString("afiliado"));
@@ -225,7 +225,7 @@ public class LocalPersistencia {
         
         String id = local.getId();
         String direccion = local.getDireccion();
-        String numero_de_local = local.getNumero_de_local();
+        String numero = local.getNumero();
         String negocio = local.getNegocio();
         String encargado = local.getEncargado();
         String afiliado = local.getAfiliado();
@@ -239,7 +239,7 @@ public class LocalPersistencia {
             String sqlStm = "UPDATE sis_ges_proyecto2022.locales SET direccion = '"+direccion+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
-            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET numero_de_local = '"+numero_de_local+"'  WHERE (id = '"+id+"')";
+            sqlStm = "UPDATE sis_ges_proyecto2022.locales SET numero = '"+numero+"'  WHERE (id = '"+id+"')";
             ps = con.prepareStatement(sqlStm);
             ps.executeUpdate();
             sqlStm = "UPDATE sis_ges_proyecto2022.locales SET negocio = '"+negocio+"'  WHERE (id = '"+id+"')";
@@ -274,7 +274,7 @@ public class LocalPersistencia {
             rs.next();
             local.setId(rs.getString("id"));
             local.setDireccion(rs.getString("direccion"));
-            local.setNumero_de_local(rs.getString("numero_de_local"));
+            local.setNumero(rs.getString("numero"));
             local.setNegocio(rs.getString("negocio"));
             local.setEncargado(rs.getString("encargado"));
             local.setAfiliado(rs.getString("afiliado"));

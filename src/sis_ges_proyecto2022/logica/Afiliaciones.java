@@ -14,8 +14,8 @@ public class Afiliaciones {
     private String id;
     private int deuda;
     private int cuota;
-    private String fecha_ult_pago;
-    private String fecha_alta;
+    private String ultimo;
+    private String alta;
 
     public String getId() {
         return id;
@@ -41,20 +41,20 @@ public class Afiliaciones {
         this.cuota = cuota;
     }
 
-    public String getFecha_ult_pago() {
-        return fecha_ult_pago;
+    public String getUltimo() {
+        return ultimo;
     }
 
-    public void setFecha_ult_pago(String fecha_ult_pago) {
-        this.fecha_ult_pago = fecha_ult_pago;
+    public void setUltimo(String ultimo) {
+        this.ultimo = ultimo;
     }
 
-    public String getFecha_alta() {
-        return fecha_alta;
+    public String getAlta() {
+        return alta;
     }
 
-    public void setFecha_alta(String fecha_alta) {
-        this.fecha_alta = fecha_alta;
+    public void setAlta(String alta) {
+        this.alta = alta;
     }
     
     

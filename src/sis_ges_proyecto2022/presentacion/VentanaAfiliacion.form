@@ -37,8 +37,8 @@
                   <Component id="documento1" min="-2" pref="91" max="-2" attributes="0"/>
                   <Component id="deuda" min="-2" max="-2" attributes="0"/>
                   <Component id="cuota" min="-2" max="-2" attributes="0"/>
-                  <Component id="fecha_alta" min="-2" max="-2" attributes="0"/>
-                  <Component id="fecha_ult_pago" min="-2" max="-2" attributes="0"/>
+                  <Component id="alta1" min="-2" max="-2" attributes="0"/>
+                  <Component id="ultimo1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="117" max="32767" attributes="0"/>
           </Group>
@@ -70,11 +70,11 @@
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fecha_ult_pago" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ultimo1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="fecha_alta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="alta1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -136,12 +136,12 @@
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="fecha_alta">
+    <Component class="javax.swing.JTextField" name="alta1">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="fecha_ult_pago">
+    <Component class="javax.swing.JTextField" name="ultimo1">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
