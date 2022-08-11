@@ -43,3 +43,4 @@ hs_err_pid*
 *.properties
 *.properties
 *.properties
+nbproject/private/private.properties
