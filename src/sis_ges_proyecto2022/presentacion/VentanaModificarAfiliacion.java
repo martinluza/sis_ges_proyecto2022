@@ -5,6 +5,15 @@
  */
 package sis_ges_proyecto2022.presentacion;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import sis_ges_proyecto2022.excepciones.AfiliacionesException;
+import sis_ges_proyecto2022.logica.Afiliaciones;
+import sis_ges_proyecto2022.logica.FachadaLogica;
+
 /**
  *
  * @author 006588869
@@ -14,8 +23,32 @@ public class VentanaModificarAfiliacion extends javax.swing.JFrame {
     /**
      * Creates new form VentanaAfiliacion
      */
-    public VentanaModificarAfiliacion() {
+    String documento;
+    String estado;
+
+    public VentanaModificarAfiliacion(String documento, String estado) throws AfiliacionesException, SQLException {
         initComponents();
+        
+        this.documento = documento;
+        this.estado = estado;
+        documento1.setText(documento);
+        Afiliaciones afiliacion = FachadaLogica.buscarAfiliacion(documento);
+        deuda1.setText(Integer.toString(afiliacion.getDeuda()));
+        cuota1.setText(Integer.toString(afiliacion.getCuota()));
+ 
+        String y = afiliacion.getUltimo().substring(0, 4);
+        String m = afiliacion.getUltimo().substring(5, 7);
+        String d = afiliacion.getUltimo().substring(8, 10);
+        ultimo1.setText(d + "/" + m + "/" + y);
+        
+        y = afiliacion.getAlta().substring(0, 4);
+        m = afiliacion.getAlta().substring(5, 7);
+        d = afiliacion.getAlta().substring(8, 10);
+        alta1.setText(d + "/" + m + "/" + y);
+    }
+
+    private VentanaModificarAfiliacion() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -27,21 +60,171 @@ public class VentanaModificarAfiliacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        volver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        modificar = new javax.swing.JButton();
+        deuda1 = new javax.swing.JTextField();
+        cuota1 = new javax.swing.JTextField();
+        ultimo1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        documento1 = new javax.swing.JLabel();
+        alta1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Modificar afiliacion");
+
+        jLabel2.setText("Deuda:");
+
+        jLabel3.setText("Cuota:");
+
+        jLabel4.setText("Fecha de último pago:");
+
+        jLabel5.setText("Fecha de alta:");
+
+        modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
+
+        deuda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deuda1ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Documento:");
+
+        documento1.setText("jLabel2");
+
+        alta1.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(volver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(modificar)
+                .addGap(32, 32, 32))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(alta1)
+                .addGap(65, 65, 65))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel5))
+                            .addGap(55, 55, 55)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(documento1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(deuda1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                            .addComponent(cuota1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ultimo1, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addComponent(alta1)
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modificar)
+                    .addComponent(volver))
+                .addGap(25, 25, 25))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(62, 62, 62)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(documento1))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(deuda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(cuota1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(ultimo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel5)
+                    .addContainerGap(103, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        new VentanaModificarAfiliado(documento, estado).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        // TODO add your handling code here:
+        int deuda = Integer.parseInt(this.deuda1.getText());
+        int cuota = Integer.parseInt(this.cuota1.getText());
+        String ultimo = this.ultimo1.getText();
+        String alta = this.alta1.getText();
+        Afiliaciones afiliacion = new Afiliaciones();
+        afiliacion.setId(documento);
+        afiliacion.setDeuda(deuda);
+        afiliacion.setCuota(cuota);
+        afiliacion.setUltimo(ultimo);
+        afiliacion.setAlta(alta);
+
+        try {
+            JLabel mensajeLbl = new JLabel();
+            FachadaLogica.modificarAfiliacion(afiliacion);
+            JOptionPane.showMessageDialog(mensajeLbl, "Afiliacion modificada con exito");
+            new VentanaModificarAfiliado(documento, "activo").setVisible(true);
+            this.dispose();
+        } catch (AfiliacionesException ex) {
+            Logger.getLogger(VentanaAgregarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaAfiliacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_modificarActionPerformed
+
+    private void deuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deuda1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deuda1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,5 +265,18 @@ public class VentanaModificarAfiliacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alta1;
+    private javax.swing.JTextField cuota1;
+    private javax.swing.JTextField deuda1;
+    private javax.swing.JLabel documento1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton modificar;
+    private javax.swing.JTextField ultimo1;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

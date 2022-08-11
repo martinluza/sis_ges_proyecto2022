@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import sis_ges_proyecto2022.excepciones.AfiliacionesException;
 import sis_ges_proyecto2022.excepciones.FechaException;
 import sis_ges_proyecto2022.logica.Afiliaciones;
+import sis_ges_proyecto2022.logica.Afiliado;
+import sis_ges_proyecto2022.logica.Afiliados;
 import sis_ges_proyecto2022.logica.Fecha;
 
 /**
@@ -191,5 +193,188 @@ public class AfiliacionesPersistencia {
             throw new AfiliacionesException("Error2");
         }
         
+    }
+    
+    public static Afiliaciones buscarAfiliacion(String id) {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+
+        Conexion con = new Conexion();
+        PreparedStatement ps = null;
+        Afiliaciones afiliacion = new Afiliaciones();
+
+        ResultSet rs = null;
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliaciones where id='" + id + "' and estado = 'activo';";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();            
+            rs.next();
+            afiliacion.setId(rs.getString("id"));
+            afiliacion.setDeuda(rs.getInt("deuda"));
+            afiliacion.setCuota(rs.getInt("cuota"));
+            afiliacion.setUltimo(rs.getString("ultimo"));
+            afiliacion.setAlta(rs.getString("alta"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return afiliacion;
+
+    }
+    
+    public static Afiliados buscarDeudores() {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+
+        Conexion con = new Conexion();
+        PreparedStatement ps = null;
+        Afiliados afiliados = new Afiliados();
+
+        ResultSet rs = null;
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliaciones where deuda > 0;";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();            
+
+            while (rs.next()) {
+                Afiliado afiliado = new Afiliado();
+                afiliado = AfiliacionPersistencia.buscarAfiliado(rs.getString("id"));
+                if (AfiliacionPersistencia.estadoAfiliado(rs.getString("id")).equals("activo")) {
+                    afiliados.agregarUsuario(afiliado);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return afiliados;
+
+    }
+    
+    public static Afiliados buscarDeudoresN() {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+
+        Conexion con = new Conexion();
+        PreparedStatement ps = null;
+        Afiliados afiliados = new Afiliados();
+
+        ResultSet rs = null;
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliaciones where deuda > 0;";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();            
+
+            while (rs.next()) {
+                Afiliado afiliado = new Afiliado();
+                afiliado = AfiliacionPersistencia.buscarAfiliado(rs.getString("id"));
+                if (AfiliacionPersistencia.estadoAfiliado(rs.getString("id")).equals("inactivo")) {
+                    afiliados.agregarUsuario(afiliado);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return afiliados;
+
+    }
+    
+    public static Afiliados buscarFechas(String desde, String hasta) {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+
+        Conexion con = new Conexion();
+        PreparedStatement ps = null;
+        Afiliados afiliados = new Afiliados();
+
+        ResultSet rs = null;
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliaciones where alta >= '"+Fecha.convertirStringAFecha(desde)+"' and alta <= '"+Fecha.convertirStringAFecha(hasta)+"' ;";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();            
+
+            while (rs.next()) {
+                Afiliado afiliado = new Afiliado();
+                afiliado = AfiliacionPersistencia.buscarAfiliado(rs.getString("id"));
+                if (AfiliacionPersistencia.estadoAfiliado(rs.getString("id")).equals("activo")) {
+                    afiliados.agregarUsuario(afiliado);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return afiliados;
+
+    }
+    
+    public static Afiliados buscarFechasN(String desde, String hasta) {
+
+        //paso 1 : crear la conexion a la base
+        //paso 2 : crear el prepare statement
+        //paso 3 : ejecutar la consulta del preparestatement
+        //paso 4 : cargar los resultados en los objetos de la capa logica si es un select la consulta
+        //paso 5 : cerrar la conexion a la base
+
+        Conexion con = new Conexion();
+        PreparedStatement ps = null;
+        Afiliados afiliados = new Afiliados();
+
+        ResultSet rs = null;
+        try {
+            Connection conexion = con.conectar();
+            String sqlStm = "select * from sis_ges_proyecto2022.afiliaciones where alta >= '"+Fecha.convertirStringAFecha(desde)+"' and alta <= '"+Fecha.convertirStringAFecha(hasta)+"' ;";
+            ps = conexion.prepareStatement(sqlStm);
+            rs = ps.executeQuery();            
+
+            while (rs.next()) {
+                Afiliado afiliado = new Afiliado();
+                afiliado = AfiliacionPersistencia.buscarAfiliado(rs.getString("id"));
+                if (AfiliacionPersistencia.estadoAfiliado(rs.getString("id")).equals("inactivo")) {
+                    afiliados.agregarUsuario(afiliado);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception ex){
+        ex.printStackTrace();
+        }
+
+        return afiliados;
+
     }
 }

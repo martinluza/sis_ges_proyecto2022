@@ -158,4 +158,33 @@ public class FachadaLogica {
     public static void ingresarAfiliacion(Afiliaciones afiliacion) throws AfiliacionesException, SQLException {
         AfiliacionesPersistencia.ingresarAfiliacion(afiliacion);
     }
+    
+    public static Afiliaciones buscarAfiliacion(String id) throws AfiliacionesException, SQLException {
+        Afiliaciones afiliacion = AfiliacionesPersistencia.buscarAfiliacion(id);
+        return afiliacion;
+    }
+    
+     public static void modificarAfiliacion(Afiliaciones afiliacion) throws AfiliacionesException, SQLException {
+        AfiliacionesPersistencia.modificarAfiliacion(afiliacion);
+    }
+     
+     public static Afiliados buscarDeudores() throws AfiliacionesException, SQLException {
+        Afiliados afiliados = AfiliacionesPersistencia.buscarDeudores();
+        return afiliados;
+    }
+     
+    public static Afiliados buscarDeudoresN() throws AfiliacionesException, SQLException {
+        Afiliados afiliados = AfiliacionesPersistencia.buscarDeudoresN();
+        return afiliados;
+    }
+    
+    public static Afiliados buscarFechas(String desde, String hasta) throws AfiliacionesException, SQLException {
+        Afiliados afiliados = AfiliacionesPersistencia.buscarFechas(desde, hasta);
+        return afiliados;
+    }
+     
+    public static Afiliados buscarFechasN(String desde, String hasta) throws AfiliacionesException, SQLException {
+        Afiliados afiliados = AfiliacionesPersistencia.buscarFechasN(desde, hasta);
+        return afiliados;
+    }
 }

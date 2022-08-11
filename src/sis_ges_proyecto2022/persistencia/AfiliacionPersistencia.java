@@ -315,7 +315,7 @@ public class AfiliacionPersistencia {
         
     }
      
-      public static Afiliado buscarAfiliado(String documento) {
+     public static Afiliado buscarAfiliado(String documento) {
 
         //paso 1 : crear la conexion a la base
         //paso 2 : crear el prepare statement
@@ -361,5 +361,5 @@ public class AfiliacionPersistencia {
         return afiliado;
 
     }
-     
+
 }

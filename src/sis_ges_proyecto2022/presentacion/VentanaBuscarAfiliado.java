@@ -5,6 +5,7 @@
  */
 package sis_ges_proyecto2022.presentacion;
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -13,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import sis_ges_proyecto2022.excepciones.AfiliacionException;
+import sis_ges_proyecto2022.excepciones.AfiliacionesException;
 import sis_ges_proyecto2022.logica.Afiliado;
 import sis_ges_proyecto2022.logica.Afiliados;
 import sis_ges_proyecto2022.logica.FachadaLogica;
@@ -68,6 +70,12 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
         buscar = new javax.swing.JButton();
         estado = new javax.swing.JToggleButton();
         volver = new javax.swing.JButton();
+        deudores = new javax.swing.JButton();
+        desde1 = new javax.swing.JTextField();
+        hasta1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        fechas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +123,33 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
             }
         });
 
+        deudores.setText("Deudores");
+        deudores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deudoresActionPerformed(evt);
+            }
+        });
+
+        desde1.setText("DD/MM/YYYY");
+        desde1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desde1ActionPerformed(evt);
+            }
+        });
+
+        hasta1.setText("DD/MM/YYYY");
+
+        jLabel2.setText("Desde");
+
+        jLabel3.setText("Hasta");
+
+        fechas.setText("Buscar");
+        fechas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,34 +157,59 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(estado))
+                        .addGap(35, 35, 35)
+                        .addComponent(volver))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(54, 54, 54)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(volver)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buscarDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(desde1)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(hasta1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(fechas))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(estado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deudores)))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(buscarDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscar)
-                    .addComponent(estado))
-                .addGap(27, 27, 27)
+                    .addComponent(estado)
+                    .addComponent(deudores))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(desde1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hasta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(fechas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(28, 28, 28)
                 .addComponent(volver)
                 .addContainerGap())
         );
@@ -217,20 +277,19 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
             DefaultTableModel modelo = (DefaultTableModel) tablaAfiliado.getModel();
             modelo.setRowCount(0);
             tablaAfiliado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
             //5es la cantidad de columnas
-
+            
             Object[] datoFila = new Object[4];
             for (int i= 0; i < afiliados.getAfiliados().size(); i++) {
-
+                
                 Afiliado afiliado = (Afiliado) afiliados.getAfiliados().get(i);
-
+                
                 datoFila[0] = afiliado.getDocumento();
                 datoFila[1] = afiliado.getNombre();
                 datoFila[2] = afiliado.getApellido();
                 datoFila[3] = afiliado.getTelefono();
                 //datoFila[4] = preg.getPuntos();
-
+                
                 modelo.addRow(datoFila);
             }
         } else {
@@ -239,20 +298,19 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
             DefaultTableModel modelo = (DefaultTableModel) tablaAfiliado.getModel();
             modelo.setRowCount(0);
             tablaAfiliado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            
             //5es la cantidad de columnas
-
+            
             Object[] datoFila = new Object[4];
             for (int i= 0; i < afiliados.getAfiliados().size(); i++) {
-
+                
                 Afiliado afiliado = (Afiliado) afiliados.getAfiliados().get(i);
-
+                
                 datoFila[0] = afiliado.getDocumento();
                 datoFila[1] = afiliado.getNombre();
                 datoFila[2] = afiliado.getApellido();
                 datoFila[3] = afiliado.getTelefono();
                 //datoFila[4] = preg.getPuntos();
-
+                
                 modelo.addRow(datoFila);
             }
         }
@@ -263,6 +321,131 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
         new VentanaMenu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_volverActionPerformed
+
+    private void deudoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deudoresActionPerformed
+        // TODO add your handling code here:
+        if (estado.getText().equals("activo")){
+            try {
+                Afiliados afiliados = FachadaLogica.buscarDeudores();
+                DefaultTableModel modelo = (DefaultTableModel) tablaAfiliado.getModel();
+                modelo.setRowCount(0);
+                tablaAfiliado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                
+                //5es la cantidad de columnas
+                
+                Object[] datoFila = new Object[4];
+                for (int i= 0; i < afiliados.getAfiliados().size(); i++) {
+                    
+                    Afiliado afiliado = (Afiliado) afiliados.getAfiliados().get(i);
+                    
+                    datoFila[0] = afiliado.getDocumento();
+                    datoFila[1] = afiliado.getNombre();
+                    datoFila[2] = afiliado.getApellido();
+                    datoFila[3] = afiliado.getTelefono();
+                    //datoFila[4] = preg.getPuntos();
+
+                    modelo.addRow(datoFila);
+                }
+            } catch (AfiliacionesException ex) {
+                Logger.getLogger(VentanaBuscarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaBuscarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                Afiliados afiliados = FachadaLogica.buscarDeudoresN();
+                DefaultTableModel modelo = (DefaultTableModel) tablaAfiliado.getModel();
+                modelo.setRowCount(0);
+                tablaAfiliado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                
+                //5es la cantidad de columnas
+                
+                Object[] datoFila = new Object[4];
+                for (int i= 0; i < afiliados.getAfiliados().size(); i++) {
+                    
+                    Afiliado afiliado = (Afiliado) afiliados.getAfiliados().get(i);
+                    
+                    datoFila[0] = afiliado.getDocumento();
+                    datoFila[1] = afiliado.getNombre();
+                    datoFila[2] = afiliado.getApellido();
+                    datoFila[3] = afiliado.getTelefono();
+                    //datoFila[4] = preg.getPuntos();
+
+                    modelo.addRow(datoFila);
+                }
+            } catch (AfiliacionesException ex) {
+                Logger.getLogger(VentanaBuscarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaBuscarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_deudoresActionPerformed
+
+    private void fechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechasActionPerformed
+        // TODO add your handling code here:
+        String desde = this.desde1.getText();
+        String hasta = this.hasta1.getText();
+        
+        if (estado.getText().equals("activo")){
+            try {
+                Afiliados afiliados = FachadaLogica.buscarFechas(desde, hasta);
+                DefaultTableModel modelo = (DefaultTableModel) tablaAfiliado.getModel();
+                modelo.setRowCount(0);
+                tablaAfiliado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                
+                //5es la cantidad de columnas
+                
+                Object[] datoFila = new Object[4];
+                for (int i= 0; i < afiliados.getAfiliados().size(); i++) {
+                    
+                    Afiliado afiliado = (Afiliado) afiliados.getAfiliados().get(i);
+                    
+                    datoFila[0] = afiliado.getDocumento();
+                    datoFila[1] = afiliado.getNombre();
+                    datoFila[2] = afiliado.getApellido();
+                    datoFila[3] = afiliado.getTelefono();
+                    //datoFila[4] = preg.getPuntos();
+
+                    modelo.addRow(datoFila);
+                }
+            } catch (AfiliacionesException ex) {
+                Logger.getLogger(VentanaBuscarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaBuscarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                Afiliados afiliados = FachadaLogica.buscarFechasN(desde, hasta);
+                DefaultTableModel modelo = (DefaultTableModel) tablaAfiliado.getModel();
+                modelo.setRowCount(0);
+                tablaAfiliado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                
+                //5es la cantidad de columnas
+                
+                Object[] datoFila = new Object[4];
+                for (int i= 0; i < afiliados.getAfiliados().size(); i++) {
+                    
+                    Afiliado afiliado = (Afiliado) afiliados.getAfiliados().get(i);
+                    
+                    datoFila[0] = afiliado.getDocumento();
+                    datoFila[1] = afiliado.getNombre();
+                    datoFila[2] = afiliado.getApellido();
+                    datoFila[3] = afiliado.getTelefono();
+                    //datoFila[4] = preg.getPuntos();
+
+                    modelo.addRow(datoFila);
+                }
+            } catch (AfiliacionesException ex) {
+                Logger.getLogger(VentanaBuscarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaBuscarAfiliado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_fechasActionPerformed
+
+    private void desde1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desde1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_desde1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,8 +485,14 @@ public class VentanaBuscarAfiliado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
     private javax.swing.JTextField buscarDoc;
+    private javax.swing.JTextField desde1;
+    private javax.swing.JButton deudores;
     private javax.swing.JToggleButton estado;
+    private javax.swing.JButton fechas;
+    private javax.swing.JTextField hasta1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaAfiliado;
     private javax.swing.JButton volver;
