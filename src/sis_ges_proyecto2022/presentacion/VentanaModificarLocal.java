@@ -41,6 +41,11 @@ public class VentanaModificarLocal extends javax.swing.JFrame {
         id1.setText(id);
         afiliado1.setText(documento);
         Local local = FachadaLogica.buscarLocal(id);
+        direccion2.setText(local.getDireccion());
+        numero2.setText(local.getNumero());
+        negocio2.setText(local.getNegocio());
+        encargado2.setText(local.getEncargado());
+        
     }
 
     private VentanaModificarLocal() {
@@ -371,7 +376,7 @@ public class VentanaModificarLocal extends javax.swing.JFrame {
 
     private void bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaActionPerformed
         // TODO add your handling code here:
-        /*if (estado.equals("activo")){
+        if (estado.equals("activo")){
             try {
                 FachadaLogica.bajaLocal(id);
                 JLabel mensajeLbl = new JLabel();
@@ -396,7 +401,7 @@ public class VentanaModificarLocal extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(VentanaModificarLocal.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }*/
+        }
     }//GEN-LAST:event_bajaActionPerformed
 
     /**
