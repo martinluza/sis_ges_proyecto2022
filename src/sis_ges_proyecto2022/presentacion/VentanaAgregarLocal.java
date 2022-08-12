@@ -169,9 +169,6 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
         
         try {
             Boolean existe = FachadaLogica.existeLocal(id);
-        
-        
-
             if (existe){
                 JLabel mensajeLbl = new JLabel();
                 JOptionPane.showMessageDialog(mensajeLbl, "id ya existe, cambiar");
@@ -189,28 +186,10 @@ public class VentanaAgregarLocal extends javax.swing.JFrame {
                 }
             }
 
-        if (existe){
-            JLabel mensajeLbl = new JLabel();
-            JOptionPane.showMessageDialog(mensajeLbl, "id ya existe, cambiar");
-        } else {
-            try {
-            FachadaLogica.ingresarLocal(local);
-            JLabel mensajeLbl = new JLabel();
-            JOptionPane.showMessageDialog(mensajeLbl, "Local ingresado con exito");
-            new VentanaBuscarLocal(documento, estado).setVisible(true);
-            this.dispose();
         } catch (LocalException ex) {
             Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
-        }
         }
 
-        } catch (LocalException ex) {
-            Logger.getLogger(VentanaAgregarLocal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
     }//GEN-LAST:event_IngresarActionPerformed
 
     /**

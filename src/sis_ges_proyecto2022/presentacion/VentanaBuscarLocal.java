@@ -182,6 +182,7 @@ public class VentanaBuscarLocal extends javax.swing.JFrame {
     private void Agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Agregar1ActionPerformed
         // TODO add your handling code here:
         new VentanaAgregarLocal(documento, estado).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_Agregar1ActionPerformed
 
     private void estado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estado1ActionPerformed
