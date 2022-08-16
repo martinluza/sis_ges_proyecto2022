@@ -140,7 +140,7 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
                 
                 //invoco al existeUsuario con el usuario que cargue en memoria para saber si existe en la base
                 if (FachadaLogica.existeUsuario(usuario)){
-<<<<<<< HEAD
+
                     
                     JOptionPane.showMessageDialog(mensajeLbl, "El usuario ya existe");
                 } else {
@@ -150,12 +150,6 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(mensajeLbl, "Error");
                     }        
-=======
-                    JOptionPane.showMessageDialog(mensajeLbl, "El usuario ya existe");
-                } else {
-                    FachadaLogica.ingresarUsuario(usuario);
-                    JOptionPane.showMessageDialog(mensajeLbl, "El usuario se ingreso correctamente");
->>>>>>> d849206090925d17502d8e4f1bf842a187c091d9
                 }
                 
             } else {
