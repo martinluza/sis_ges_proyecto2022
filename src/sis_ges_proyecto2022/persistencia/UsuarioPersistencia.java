@@ -101,7 +101,11 @@ public class UsuarioPersistencia {
         ResultSet rs = null;
         try {
             Connection conexion = con.conectar();
+<<<<<<< HEAD
             String sqlStm = "select * from sis_ges_proyecto2022.usuarios where nombre='" + nombre + "';";
+=======
+            String sqlStm = "select * from sis_ges_proyecto2022.usuarios where nombre='" + nombre + "' and clave='" + clave + "';";
+>>>>>>> d849206090925d17502d8e4f1bf842a187c091d9
             ps = conexion.prepareStatement(sqlStm);
             rs = ps.executeQuery();
             if (rs !=null&& rs.next()) {

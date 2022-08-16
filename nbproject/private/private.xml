@@ -12,11 +12,41 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/mauri/OneDrive/Desktop/Bios/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaBuscarLocal.java</file>
             <file>file:/C:/Users/mauri/OneDrive/Desktop/Bios/sis_ges_proyecto2022/src/sis_ges_proyecto2022/persistencia/LocalPersistencia.java</file>
             <file>file:/C:/Users/mauri/OneDrive/Desktop/Bios/sis_ges_proyecto2022/src/sis_ges_proyecto2022/persistencia/UsuarioPersistencia.java</file>
             <file>file:/C:/Users/mauri/OneDrive/Desktop/Bios/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaAgregarLocal.java</file>
             <file>file:/C:/Users/mauri/OneDrive/Desktop/Bios/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaIngresarUsuario.java</file>
+=======
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/excepciones/UsuarioException.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaAgregarAfiliado.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/persistencia/Conexion.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaIngresarUsuario.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaBuscarLocal.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaModificarLocal.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaModificarAfiliado.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaMenu.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/persistencia/LocalPersistencia.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/persistencia/AfiliacionesPersistencia.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/logica/Locales.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaUsuario.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaModificarAfiliacion.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaBuscarUsuario.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaAgregarLocal.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/logica/Afiliados.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/logica/Usuarios.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/logica/Usuario.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/logica/Afiliaciones.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/logica/Afiliado.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/logica/FachadaLogica.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaAfiliacion.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/excepciones/AfiliacionException.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/logica/Local.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/persistencia/UsuarioPersistencia.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/persistencia/AfiliacionPersistencia.java</file>
+            <file>file:/C:/Users/marti/Documents/NetBeansProjects/sis_ges_proyecto2022/src/sis_ges_proyecto2022/presentacion/VentanaBuscarAfiliado.java</file>
+>>>>>>> d849206090925d17502d8e4f1bf842a187c091d9
         </group>
     </open-files>
 </project-private>
