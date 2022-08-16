@@ -48,8 +48,6 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre");
 
-        nombre.setText(" ");
-
         jLabel2.setText("Clave");
 
         Ingresar.setText("Ingresar");
@@ -60,6 +58,12 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Repetir clave");
+
+        clave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                claveActionPerformed(evt);
+            }
+        });
 
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +164,10 @@ public class VentanaIngresarUsuario extends javax.swing.JFrame {
         new VentanaMenu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_volverActionPerformed
+
+    private void claveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_claveActionPerformed
 
     /**
      * @param args the command line arguments
